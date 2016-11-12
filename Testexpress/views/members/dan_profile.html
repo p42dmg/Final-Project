@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+        <!-- STYLESHEETS -->
+		<link rel="stylesheet" type="text/css" href="../css/main.css">
+		<link rel="stylesheet" type="text/css" href="../css/profile.css">
+        <!-- MOBILE STYLESHEETS -->
+        <link rel="stylesheet"  type="text/css" href="../css/tablet.css" media="screen and (max-device-width: 768px)">
+		<link rel="stylesheet"  type="text/css" href="../css/tablet.css" media="screen and (max-device-width: 1024px) and (orientation: landscape">
+        <link rel="stylesheet"  type="text/css" href="../css/mobile.css" media="screen and (max-device-width: 480px)">
+		<link rel="stylesheet"  type="text/css" href="../css/mobile.css" media="screen and (max-device-width: 640px) and (orientation: landscape)">
+		<!--FONTS-->
+		<link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        
+		<script src="../js/friendlist_remove.js"></script>
+		<script src="../js/friendlist_store.js"></script>
+		<script src="../js/friendlist.js"></script> 
+		
+		
+        <title>The Network | Profile</title>
+	
+	</head>
+	
+	<body id="profile_1">
+	
+		<div id="wrapper"> <!-- TABLE-->
+		
+			<!--HEADER ROW 1-->
+			<header>
+			<img class="logo" src="../images/logo01.png" size="100px" height="100px">
+				<!--NAVIGATION-->
+				<nav>
+				
+					<ul>
+						<li><a  href="../index.html" title="Home">Home</a></li>
+						<li><a href="members.html" title="Members">Members</a></li>
+						<li><a href="../groups/groups.html" title="Groups">Groups</a></li>
+						<li><a href="../map/map.html" title="Map">Map</a></li>						
+					</ul>
+				
+				</nav>
+				
+			</header>
+			
+			<!-- CONTENT ROW 2-->
+			
+			<div id="container">
+			
+				<div id="content-wrap"> <!-- content table-->
+				
+					<div id="main-header"> <!-- content table row 1-->
+					
+						<div id="profile"> <!-- header table -->
+						
+							<div id="user-img"> <!-- header table cell 1-->
+								<a href="../images/prof03.jpg" title="Click for full size image" class="avatar"><img src="../images/icon03.png" alt="Avatar thumbnail"></a>
+							</div>
+							
+							<div id="bio"> <!--header table cell 2-->
+								<div id="bio-wrapper"> <!-- cell 2 wrapper for padding/margin-->
+									<h1 id="profile-name">Danielle Gillespie</h1>
+									
+									<p class="profile-info">
+										30 | Female | <a href="../map/map.html" title="Location">Mount Pearl, NL</a><br>
+										Aug. 21, 1986 | (709)xxx-xxx
+									</p>
+									<p class="profile-blurb">Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. </p>
+								</div> <!--end cell 2 wrapper-->
+							</div>
+						</div><!--end header table-->
+					</div> <!-- end content row 1-->
+					
+					<div id="main-content"> <!--content table row 2-->
+					
+						<div id="main-content-wrap"> <!-- wrapper for row content-->
+							
+							<article id="friends">
+								<h2>Friends</h2>
+								<ul id="friendlist">
+									<li id="friend_1">
+										
+										<div class="remove">
+											<button onclick="removeFriend('friend_1', 'Joseph Gibson')">x</button>
+										</div>
+										
+										<div class="link">
+										
+											<a href="joe_profile.html" title="Joseph Gibson">
+												<div class="friend-img">
+													<img class="small-icon" src="../images/icon01.png" alt="Joseph Gibson" >
+												</div>
+												
+												<div class="friend-info">
+													<p>Joseph Gibson<br> Memorial University | 20 | St. John's</p>
+												</div>
+											</a>
+										
+										</div>
+										
+									</li>
+									
+									<li id="friend_2">
+										<div class="remove">
+											<button onclick="removeFriend('friend_2', 'Dummy Profile')">x</button>
+										</div>
+										
+										<div class="link">
+										
+											<a href="#" title="Dummy Profile">
+												<div class="friend-img">
+													<img class="small-icon" src="../images/icon02.png" alt="Dummy Profile" >
+												</div>
+												
+												<div class="friend-info">
+													<p>Dummy Profile<br> Some Info |Age | Location</p>
+												</div>
+											</a>
+										
+										</div>
+										
+									</li>
+								</ul>
+								
+								<form id="add-friend">
+								
+									<div class="tableRow">
+										<p class="label"> Member to Add: </p>
+										<p class="input"> 
+											<select name="members" id="selectMember">
+												<option value="" id="default"></option>
+												<option value="John Smith" id="John Smith">John Smith</option>
+												<option value="Jane Doe" id="Jane Doe">Jane Doe</option>
+												<option value="Danielle Gillespie" id="Danielle Gillespie">Danielle Gillespie</option>
+												<option value="Joseph Gibson" id="Joseph Gibson">Joseph Gibson</option>
+											</select>
+										</p>
+									</div>
+									<div class="tableRow">	
+										<p class="label">Address: </p>
+										<p class="input">
+											<input type="text" name="place" id="place" value=""></input>
+										</p>
+									</div>
+									<div class="tableRow">
+										<p class="label">Age: </p>
+										<p class="input">
+											<input type="text" name="age" id="age" value=""></input>
+										</p>
+									</div>
+									<div class="tableRow">
+										<p class="label">Location: </p>
+										<p class="input">
+											<input type="text" name="location" id="location" value=""></input>
+										</p>
+									</div>
+									<div class="tableRow">
+										<p></p>
+										<p> 
+											<input type="button" id="addFriend" value="Add Friend">
+										</p>
+									</div>
+								</form>
+							
+							</article>
+							
+							<aside id="schedule">
+						
+								<h2>Schedule</h2>
+								<p>
+									<ul>
+										<li>Monday
+											<ul class="nested">
+												<li>Sociology 4107</li>
+												<li>MUCEP</li>
+											</ul>
+										</li>
+										<li>Tuesday
+											<ul class="nested">
+												<li>Computer Science 3715</li>
+												<li>Folklore 3930</li>
+												<li>4:00pm Work</li>
+											</ul>
+										</li>
+										<li>Wednesday
+											<ul class="nested">
+												<li>Sociology 4107</li>
+												<li>MUCEP</li>
+											</ul>
+										</li>
+										<li>Thursday
+											<ul class="nested">
+												<li>Computer Science 3715</li>
+												<li>Folklore 3930</li>
+												</li>Volunteering
+											</ul>
+										</li>
+										<li>Friday
+											<ul class="nested">
+												<li>MUCEP</li>
+											</ul>
+										</li>
+									</ul>
+								</p>
+							</aside>
+
+						</div> <!--end content row 2 wrapper-->
+					
+					</div> <!-- end content row 2-->
+				
+				</div> <!--end content table -->
+			
+			</div> <!-- end wrapper table -->
+			
+			<!--FOOTER-->
+			<footer>
+				<div id="copy">
+					<p>&copy; 2016</p>
+				</div>
+			
+			</footer>
+		
+		</div>
+	
+	</body>
+	
+</html>

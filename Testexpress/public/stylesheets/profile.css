@@ -1,0 +1,171 @@
+#container, nav ul li a:hover{
+	background-color:   #A3BF3F;
+}
+
+#profile{
+	background-color: white;
+	height: 100%;
+	width: 100%;
+	display: table;
+}
+
+#user-img{
+	display: table-cell;
+	width: 150px;
+	height: 150px;
+	vertical-align: top;
+}
+
+#bio{
+	color: #333;
+	display: table-cell;
+	height: 150px;
+	padding-right: 10px;
+	border-collapse: separate;
+	border-right: 10px;
+}	
+
+#bio h1{
+ font-size: 2.0em;
+}
+
+#bio-wrapper{
+	margin-left:5px;
+	padding: 5px;
+}
+
+.profile-info{
+	font-size: 0.9em;
+}
+
+#main-header-wrap{
+	padding: 10px;
+	display: table;
+	vertical-align: top;
+}
+
+#main-header a{
+	color: #333;
+}	
+
+#main-header a:hover{
+	color:  #A3BF3F;
+}
+
+#main-content-wrap p{
+	font-family: 'Asap', sans-serif;
+}
+
+#schedule, #friends{
+	display: table-cell;
+}
+
+#main-content-wrap ul{
+	list-style: initial;
+	padding: 10px;
+}
+
+#main-content-wrap ul li{
+	display: list-item;
+}
+
+.nested{
+	margin-left: 15px;
+}
+
+.nested li{
+	font-style: italic;
+}
+
+#schedule{
+	width: 20%;
+}
+
+#friends ul{
+	list-style: none;
+	width: 70%;
+}
+
+#friends ul li{
+	overflow: auto;
+	text-align: right;
+	
+}
+
+.link, .remove, .friend-img, .friend-info{
+	float: right;
+}
+
+.friend-info{
+	padding: 5px;
+}
+
+.link{
+	width: 100%;
+}
+
+#friends ul li a{
+	text-decoration: none;
+	display: block;
+	height: 85px;
+	color: #333;
+	background-color: #ffe8b3;
+}
+
+#friends ul li a:hover{
+	background-color: #A3BF3F;
+	color: white;
+	font-style: bold;
+}
+
+.small-icon{
+	float: right;
+	filter: none;
+	border-color: #A3BF3F;
+	color: white;
+}
+
+.remove button{
+	color: #A3BF3F;
+	background-color: transparent;
+	border-color: #A3BF3F;
+	border-style: solid;
+	padding: 3px;
+	display: inline-block;
+}
+
+.remove button:hover{
+	color: red;
+	border-color: red;
+}
+
+.tableRow input{
+    border: 1px solid black;
+    border-radius: 1px;
+    background-color: #ececec;
+}
+
+.tableRow input[type=text]:focus {
+    border: 2px solid #A3BF3F;
+}
+
+#addFriend {
+     background-color: #A3BF3F;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+	cursor: pointer;
+}
+    
+.tableRow select {
+    padding: 3px 6px;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    font-family: 'Roboto',sans-serif;
+}
+    
+    
