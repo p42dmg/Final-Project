@@ -37,13 +37,12 @@
 						<div id="main-content-wrap">
 						
 							<ul>
-						
-								<li><a href="dan_profile.html" title="Danielle Gillespie"><img class="small-icon" src="../images/icon03.png" alt="Danielle Gillespie" ></a></li>
+					
+								<% members.forEach(function(members) { %>
+       								 
+       								 <li><a href="profile?q=<%= members.uid %>" title="<%= members.name %>"><img class="small-icon" src="../images/<%= members.icon %>" alt="<%= members.name %>" ></a></li>
 								
-								<li><a href="joe_profile.html" title="Joseph Gibson"><img class="small-icon" src="../images/icon01.png" alt="Joseph Gibson" ></a></li>
-                                
-                                <li><a href="#" title="Place Holder"><img class="small-icon" src="../images/icon02.png" alt="Place Holder" ></a></li>
-								
+    							<% }); %>
 							</ul>
 						
 						</div>
