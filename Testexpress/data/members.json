@@ -1,12 +1,18 @@
 [
 	{
-		"name": "Danielle Gillespie",
 		"uid": "1",
-		"icon": "icon03.png"
+		"name": "Danielle Gillespie",
+		"icon": "icon03.png",
+		"iconLarge": "prof03.jpg",
+		"age": "30",
+		"gender": "Female",
+		"birthday": "Aug. 21, 1986",
+		"phoneNumber": "(709)xxx-xxxx",
+		"bio": "Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt."
 	},
 	{
-		"name": "Joseph Gibson",
 		"uid": "2",
+		"name": "Joseph Gibson",
 		"icon": "icon01.png"
 	}
 	
