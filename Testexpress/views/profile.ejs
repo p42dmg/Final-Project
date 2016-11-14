@@ -91,31 +91,19 @@
 										<p class="input"> 
 											<select name="members" id="selectMember">
 												<option value="" id="default"></option>
-												<option value="John Smith" id="John Smith">John Smith</option>
-												<option value="Jane Doe" id="Jane Doe">Jane Doe</option>
-												<option value="Danielle Gillespie" id="Danielle Gillespie">Danielle Gillespie</option>
-												<option value="Joseph Gibson" id="Joseph Gibson">Joseph Gibson</option>
+												<% members.forEach(function(members) { 
+													for(var i = 0; i < friends.length; i++){
+														if(members.uid != friends.uid){
+													%>
+												<option value="<%= members.name %>" id="<%= members.name %>"><%= members.name %></option>
+												<% 
+														}
+													}
+												}); %>
 											</select>
 										</p>
 									</div>
-									<div class="tableRow">	
-										<p class="label">Address: </p>
-										<p class="input">
-											<input type="text" name="place" id="place" value=""></input>
-										</p>
-									</div>
-									<div class="tableRow">
-										<p class="label">Age: </p>
-										<p class="input">
-											<input type="text" name="age" id="age" value=""></input>
-										</p>
-									</div>
-									<div class="tableRow">
-										<p class="label">Location: </p>
-										<p class="input">
-											<input type="text" name="location" id="location" value=""></input>
-										</p>
-									</div>
+									
 									<div class="tableRow">
 										<p></p>
 										<p> 

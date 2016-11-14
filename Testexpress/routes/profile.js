@@ -44,7 +44,8 @@ router.get('/', function(req, res, next) {
 		  console.log(friendsArray);
 		  res.render('profile', { 
 			  profile: profile,
-			  friends: friendsArray
+			  friends: friendsArray,
+			  members: members
 		  });
 	  }
 	});

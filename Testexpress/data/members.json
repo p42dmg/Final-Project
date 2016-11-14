@@ -28,6 +28,9 @@
 		"location": "Location",
 		"info": "Some Info",
 		"friends":[]
+	},
+	{
+		"uid": "4",
+		"name": "Testing"
 	}
-	
 ]
