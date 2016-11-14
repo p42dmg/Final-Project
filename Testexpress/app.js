@@ -16,7 +16,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+//checking that I can change 
 
 //set port
 app.listen(3000, function () {
