@@ -1,0 +1,156 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html, body, #wrapper{
+	height: 100%;
+	width: 100%;
+	color: #FFF1D0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#wrapper{
+	display: table;
+}
+
+/*HEADER*/
+header{
+	height: 100px;
+	background-color: #400F13;
+	display: table-row;
+}
+
+
+/*NAVIGATION*/
+
+nav{
+	float: right;
+	margin-right: 35px;
+	margin-top: 40px;
+}
+
+nav ul{
+	list-style: none;
+}
+
+nav ul li{
+	display: inline-block;
+	margin-left: 15px;
+}
+
+nav ul li a.active, nav ul li a:hover{
+	background-color:  #400F13;
+}
+
+nav ul li a.active{
+	cursor: default; /*sets cursor to hand rather than pointer*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+nav ul li a{
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #FFF1D0;
+	font-family: 'Asap', sans-serif;
+	padding: 20px;
+}
+
+nav ul li a:hover{
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+/*CONTENT*/
+#container{
+	background-color:  #027368;
+	display: table-row;
+}
+
+#content-wrap{
+	width: 50%;
+	margin: auto;
+	overflow: auto;
+	height: 100%;
+	display: table;
+	border-collapse:collapse;
+	border-spacing:15px;
+}
+
+/*CONTENT HEADER*/
+#main-header{
+	display: table-row;
+	height: 20%;
+}
+
+#main-header{
+	border-bottom: 1px inset #400F13;
+}
+
+#main-header h1{
+	font-family: 'Montserrat', sans-serif;
+	color: #400F13;
+	font-size: 3.0em;
+	text-shadow: 2px 2px 3px rgba(255,255,255,0.1);
+}
+
+#main-header p{
+	font-family: 'Asap', sans-serif;
+	font-size: 0.9em;
+	padding: 5px;
+	line-height: 1.5em;
+}
+
+/*MAIN CONTENT*/
+
+#main-content{
+	display: table-row;
+	background-color: #FFF1D0;
+}
+
+#main-content-wrap{
+	color: #400F13;
+	padding: 5px;
+}
+
+#main-content-wrap ul{
+	list-style: none;
+}
+
+#main-content-wrap ul li{
+	display: inline-block;
+	padding: 3px;
+}
+
+.small-icon{
+	display: block;
+	height: 75px;
+	width: 75px;
+	border: 5px solid #ffe8b3;
+}
+
+.small-icon:hover{
+	filter: none;
+}
+
+h2{
+	padding-bottom: 3px;
+}
+
+/*FOOTER*/
+footer{
+	height: 100px;
+	background-color: #400F13;
+	display: table-row;
+}
+
+
+#copy{
+	float: right;
+	padding: 10px;
+	color: #FFF1D0;
+	font-size: 10px;
+}

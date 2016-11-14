@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<% include head %>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/members.css">
+		<title>The Network | Members</title>
+	
+	</head>
+	
+	<body>
+	
+		<div id="wrapper">
+		
+			<!--HEADER-->
+			<header>
+			<img class="logo" src="/images/logo01.png" size="100px" height="100px">
+				
+				<% include nav %>
+				
+			</header>
+			
+			<div id="container">
+			
+				<div id="content-wrap">
+				
+					<div id="main-header">
+						<h1>Members</h1>
+						
+						<p>Mauris non finibus metus, et interdum mauris. Fusce in fermentum lectus. Donec accumsan mi tincidunt purus rhoncus dapibus id sed neque<p>
+					
+					</div>
+					
+					<div id="main-content">
+					
+						<div id="main-content-wrap">
+						
+							<ul>
+					
+								<% members.forEach(function(members) { %>
+       								 
+       								 <li><a href="profile?id=<%= members.uid %>" title="<%= members.name %>"><img class="small-icon" src="../images/<%= members.icon %>" alt="<%= members.name %>" ></a></li>
+								
+    							<% }); %>
+							</ul>
+						
+						</div>
+					
+					</div>
+				
+				</div>
+			
+			</div>
+			
+			<!--FOOTER-->
+			<footer>
+				
+				<% include footer %>
+			
+			</footer>
+		
+		</div>
+	
+	</body>
+	
+</html>

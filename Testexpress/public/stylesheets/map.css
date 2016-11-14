@@ -1,0 +1,106 @@
+nav ul li a.active, nav ul li a:hover{
+	background-color:  #D93A2B;
+}
+
+#container{
+	background-color: #D93A2B;
+}
+
+
+#map-list{
+	background-color: white;
+	color: #400F13;
+	padding: 5px;
+	vertical-align: top;
+    padding: 15px;
+    text-align: center;
+}
+
+#map-list ul{
+	list-style: none;
+}
+
+#map-list ul li{
+	padding: 5px;
+}
+
+#map{
+	width: 100%;
+	height: 500px;
+	text-align: center;
+}
+
+#map-table{
+	width: 100%;
+	
+}
+
+#map-list th, td{
+     border-bottom: 1px solid #ddd;
+}
+#map-list th{
+    background-color: #D93A2B;
+    color: white;
+    text-align: center;
+	padding: 10px;
+}
+
+#map-list tr.even{
+	background-color: #f0aea8;
+}
+
+#map-list tr.odd{
+	background-color: #b3ffff;
+}
+#find-button {
+    background-color: #D93A2B;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 17px;
+    margin: 4px 2px;
+	cursor: pointer;
+}
+
+#map-list a{
+	text-decoration: none;
+	color: #D93A2B;
+}
+
+#map-list a:hover{
+	color: #400F13;
+}
+
+
+.tableRow input{
+    border: 1px solid black;
+    border-radius: 1px;
+    background-color: #ececec;
+}
+
+.tableRow input[type=text]:focus {
+    border: 2px solid #A3BF3F;
+}
+
+.tableRow select {
+    padding: 3px 6px;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    font-family: 'Roboto',sans-serif;
+}
+
+#addLocation {
+    background-color: #D93A2B;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+	cursor: pointer;
+}
+
+    
