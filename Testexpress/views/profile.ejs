@@ -92,14 +92,27 @@
 											<select name="members" id="selectMember">
 												<option value="" id="default"></option>
 												<% members.forEach(function(members) { 
+													var x = 0;
+													
+													console.log("M" + members.uid);
 													for(var i = 0; i < friends.length; i++){
-														if(members.uid != friends.uid){
+														console.log("F" + friends[i].uid);
+														if(members.uid != friends[i].uid){
+															x++;
+														}
+														else{
+															break;
+														}
+														if(x == friends.length && members.uid != friends[i].uid && members.uid != id){
+														console.log("add");
 													%>
 												<option value="<%= members.name %>" id="<%= members.name %>"><%= members.name %></option>
 												<% 
 														}
 													}
-												}); %>
+												}); 
+											
+												%>
 											</select>
 										</p>
 									</div>
