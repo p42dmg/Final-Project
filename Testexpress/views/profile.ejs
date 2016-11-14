@@ -5,6 +5,9 @@
 	<head>
 		<% include head %>
 		<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
+		<script src="/js/friendlist_remove.js"></script>
+		<script src="/js/friendlist_store.js"></script>
+		<script src="/js/friendlist.js"></script>
 		<title>The Network | Members</title>
 	
 	</head>
@@ -54,48 +57,31 @@
 							<article id="friends">
 								<h2>Friends</h2>
 								<ul id="friendlist">
-									<li id="friend_1">
+								
+								<% friends.forEach(function(friends) { %>
+									<li id="friend_<%= friends.uid %>">
 										
 										<div class="remove">
-											<button onclick="removeFriend('friend_1', 'Joseph Gibson')">x</button>
+											<button onclick="removeFriend('friend_<%= friends.uid %>', '<%= friends.name %>')">x</button>
 										</div>
 										
 										<div class="link">
 										
-											<a href="joe_profile.html" title="Joseph Gibson">
+											<a href="profile?id=<%= friends.uid %>" title="<%= friends.name %>n">
 												<div class="friend-img">
-													<img class="small-icon" src="../images/icon01.png" alt="Joseph Gibson" >
+													<img class="small-icon" src="/images/<%= friends.icon %>" alt="<%= friends.name %>" >
 												</div>
 												
 												<div class="friend-info">
-													<p>Joseph Gibson<br> Memorial University | 20 | St. John's</p>
+													<p><%= friends.name %><br> <%= friends.info %> | <%= friends.age %> | <%= friends.location %></p>
 												</div>
 											</a>
 										
 										</div>
 										
 									</li>
-									
-									<li id="friend_2">
-										<div class="remove">
-											<button onclick="removeFriend('friend_2', 'Dummy Profile')">x</button>
-										</div>
-										
-										<div class="link">
-										
-											<a href="#" title="Dummy Profile">
-												<div class="friend-img">
-													<img class="small-icon" src="../images/icon02.png" alt="Dummy Profile" >
-												</div>
-												
-												<div class="friend-info">
-													<p>Dummy Profile<br> Some Info |Age | Location</p>
-												</div>
-											</a>
-										
-										</div>
-										
-									</li>
+									<% }); %>
+							
 								</ul>
 								
 								<form id="add-friend">

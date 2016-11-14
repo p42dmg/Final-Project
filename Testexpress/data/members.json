@@ -8,12 +8,26 @@
 		"gender": "Female",
 		"birthday": "Aug. 21, 1986",
 		"phoneNumber": "(709)xxx-xxxx",
-		"bio": "Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt."
+		"bio": "Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.",
+		"friends": [2,3]
 	},
 	{
 		"uid": "2",
 		"name": "Joseph Gibson",
-		"icon": "icon01.png"
+		"icon": "icon01.png",
+		"age": "20",
+		"location": "St.John's",
+		"info": "Memorial University",
+		"friends":[1]
+	},
+	{
+		"uid": "3",
+		"name": "Dummy",
+		"icon": "icon02.png",
+		"age": "Age",
+		"location": "Location",
+		"info": "Some Info",
+		"friends":[]
 	}
 	
 ]
