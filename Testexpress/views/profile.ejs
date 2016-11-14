@@ -84,7 +84,7 @@
 							
 								</ul>
 								
-								<form id="add-friend">
+								<form id="add-friend" method="post" action="/addFriend">
 								
 									<div class="tableRow">
 										<p class="label"> Member to Add: </p>
@@ -94,9 +94,9 @@
 												<% members.forEach(function(members) { 
 													var x = 0;
 													
-													console.log("M" + members.uid);
+													//console.log("M" + members.uid);
 													for(var i = 0; i < friends.length; i++){
-														console.log("F" + friends[i].uid);
+														//console.log("F" + friends[i].uid);
 														if(members.uid != friends[i].uid){
 															x++;
 														}
@@ -104,7 +104,7 @@
 															break;
 														}
 														if(x == friends.length && members.uid != friends[i].uid && members.uid != id){
-														console.log("add");
+														//console.log("add");
 													%>
 												<option value="<%= members.name %>" id="<%= members.name %>"><%= members.name %></option>
 												<% 
@@ -120,7 +120,7 @@
 									<div class="tableRow">
 										<p></p>
 										<p> 
-											<input type="button" id="addFriend" value="Add Friend">
+											<input type="submit" id="addFriend" value="Add Friend">
 										</p>
 									</div>
 								</form>

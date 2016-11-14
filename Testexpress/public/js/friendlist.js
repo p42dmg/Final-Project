@@ -2,7 +2,7 @@ window.onload = init;
 
 function init() {
 	var button = document.getElementById("addFriend");
-	loadFriendlist();
+	//loadFriendlist();
 	//removeFriendlist();
 	button.onclick = handleButtonClick;
 }
