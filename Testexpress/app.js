@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var fs = require('fs');
 var index = require('./routes/index');
 var members = require('./routes/members');
 var map = require('./routes/maps');
@@ -36,6 +36,50 @@ app.use('/members', members);
 app.use('/groups', groups);
 app.use('/map', map);
 app.use('/profile', profile);
+/**bodyParser.json(options)
+ * Parses the text as JSON and exposes the resulting object on req.body.
+ */
+app.use(bodyParser.json());
+
+app.post('/addFriend', function(req, res){
+	//needs to get profile id from url
+	//and update friend added to json
+	//then rediect back to profile page
+	
+	console.log(req.body);
+	//open data file
+	var friendArray;
+	var members;
+	fs.readFile('data/members.json', 'utf8', function (err, data) {
+		  if (err){
+			  throw err;
+		  }
+		  else{
+			
+			  members = JSON.parse(data);
+			  for(var i = 0; i < members.length; i++){
+				  if(members[i].uid === req.body.profileID){
+					  friendArray = members[i].friends;
+					  friendArray.push(req.body.members);
+					  members[i].friends = friendArray;
+					  members = JSON.stringify(members);
+					  break;
+				  }
+			  }
+			  
+			  fs.writeFile('data/members.json', members, function(error) {
+				     if (error) {
+				       console.error("write error:  " + error.message);
+				     } else {
+				       console.log("Successful");
+				     }
+				});
+			  
+		  }
+		});
+	
+	res.redirect('back');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,18 +99,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-/**bodyParser.json(options)
- * Parses the text as JSON and exposes the resulting object on req.body.
- */
-app.use(bodyParser.json());
 
-app.post('/addFriend', function(req, res){
-	//needs to get profile id from url
-	//and update friend added to json
-	//then rediect back to profile page
-	res.redirect('/');
-	console.log(req.body);
-	
-	});
 
 module.exports = app;

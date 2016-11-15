@@ -5,9 +5,6 @@
 	<head>
 		<% include head %>
 		<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
-		<script src="/js/friendlist_remove.js"></script>
-		<script src="/js/friendlist_store.js"></script>
-		<script src="/js/friendlist.js"></script>
 		<title>The Network | Members</title>
 	
 	</head>
@@ -94,9 +91,9 @@
 												<% members.forEach(function(members) { 
 													var x = 0;
 													
-													//console.log("M" + members.uid);
+													console.log("M" + members.uid);
 													for(var i = 0; i < friends.length; i++){
-														//console.log("F" + friends[i].uid);
+														console.log("F" + friends[i].uid);
 														if(members.uid != friends[i].uid){
 															x++;
 														}
@@ -106,9 +103,14 @@
 														if(x == friends.length && members.uid != friends[i].uid && members.uid != id){
 														//console.log("add");
 													%>
-												<option value="<%= members.name %>" id="<%= members.name %>"><%= members.name %></option>
+												<option value="<%= members.uid %>" id="<%= members.name %>"><%= members.name %></option>
 												<% 
 														}
+													}
+													if(friends.length == 0 && members.uid != id){
+														%>
+												<option value="<%= members.uid %>" id="<%= members.name %>"><%= members.name %></option>
+												<% 
 													}
 												}); 
 											
@@ -116,7 +118,7 @@
 											</select>
 										</p>
 									</div>
-									
+									<input type="hidden" name="profileID" value="<%= id %>">
 									<div class="tableRow">
 										<p></p>
 										<p> 
