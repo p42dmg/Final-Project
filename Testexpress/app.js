@@ -10,6 +10,7 @@ var members = require('./routes/members');
 var map = require('./routes/maps');
 var groups = require('./routes/groups');
 var profile = require('./routes/profile');
+var profileEdit = require('./routes/profileEdit')
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/members', members);
 app.use('/groups', groups);
 app.use('/map', map);
 app.use('/profile', profile);
+app.use('/profileEdit', profileEdit);
 /**bodyParser.json(options)
  * Parses the text as JSON and exposes the resulting object on req.body.
  */
@@ -60,7 +62,7 @@ app.post('/addFriend', function(req, res){
 			  for(var i = 0; i < members.length; i++){
 				  if(members[i].uid === req.body.profileID){
 					  friendArray = members[i].friends;
-					  friendArray.push(req.body.members);
+					  friendArray.push(parseInt(req.body.members));
 					  members[i].friends = friendArray;
 					  members = JSON.stringify(members);
 					  break;
@@ -79,6 +81,88 @@ app.post('/addFriend', function(req, res){
 		});
 	
 	res.redirect('back');
+});
+
+app.post('/removeFriend', function(req, res){
+	//needs to get profile id from url
+	//and update friend added to json
+	//then rediect back to profile page
+	
+	console.log(req.body);
+	//open data file
+	var friendArray;
+	var friendID = parseInt(req.body.friendID);
+	var profileID = parseInt(req.body.friendID);
+	fs.readFile('data/members.json', 'utf8', function (err, data) {
+		  if (err){
+			  throw err;
+		  }
+		  else{
+			
+			  members = JSON.parse(data);
+			  for(var i = 0; i < members.length; i++){
+				  if(members[i].uid === req.body.profileID){
+					  friendArray = members[i].friends;
+					  console.log(friendArray);
+					  for(var j = 0; j < friendArray.length; j++){
+						  if(friendArray[j] == friendID){
+							  friendArray.splice(j, 1); //remove 1 item at index j
+						  }
+					  }
+					  console.log(friendArray);
+					  members[i].friends = friendArray;
+					  members = JSON.stringify(members);
+					  break;
+				  }
+			  }
+			  
+			  fs.writeFile('data/members.json', members, function(error) {
+				     if (error) {
+				       console.error("write error:  " + error.message);
+				     } else {
+				       console.log("Successful");
+				     }
+				});
+			  
+		  }
+		});
+	
+	res.redirect('back');
+});
+
+app.post('/editProfile', function(req, res){
+	console.log(req.body);
+	var members;
+	var profile;
+	fs.readFile('data/members.json', 'utf8', function (err, data) {
+		  if (err){
+			  throw err;
+		  }
+		  else{
+			
+			  members = JSON.parse(data);
+			  for(var i = 0; i < members.length; i++){
+				  if(members[i].uid === req.body.profileID){
+					  members[i].name = req.body.name;
+					  members[i].birthday = req.body.dob;
+					  members[i].age = req.body.age;
+					  members[i].gender = req.body.gender;
+					  members[i].bio = req.body.bio;
+					  members[i].schedule = req.body.schedule;
+					  break;
+				  }
+			  }
+			  members = JSON.stringify(members);
+			  fs.writeFile('data/members.json', members, function(error) {
+				     if (error) {
+				       console.error("write error:  " + error.message);
+				     } else {
+				       console.log("Successful");
+				     }
+				});
+		  	}
+		  });
+	res.redirect('profile?id=' + req.body.profileID);
 });
 
 // catch 404 and forward to error handler
