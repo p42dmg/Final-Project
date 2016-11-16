@@ -125,7 +125,7 @@
 	color: white;
 }
 
-.remove button{
+#removeFriend{
 	color: #A3BF3F;
 	background-color: transparent;
 	border-color: #A3BF3F;
@@ -134,9 +134,10 @@
 	display: inline-block;
 }
 
-.remove button:hover{
+#removeFriend:hover{
 	color: red;
 	border-color: red;
+	cursor: pointer;
 }
 
 .tableRow input{

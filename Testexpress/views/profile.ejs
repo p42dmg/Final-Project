@@ -31,6 +31,8 @@
 						
 							<div id="user-img"> <!-- header table cell 1-->
 								<a href="/images/<%= profile.iconLarge %>" title="Click for full size image" class="avatar"><img src="/images/<%= profile.icon %>" alt="Avatar thumbnail"></a>
+								<br>
+								<a href="/profileEdit?id=<%=profile.uid %>">Edit</a>
 							</div>
 							
 							<div id="bio"> <!--header table cell 2-->
@@ -59,7 +61,11 @@
 									<li id="friend_<%= friends.uid %>">
 										
 										<div class="remove">
-											<button onclick="removeFriend('friend_<%= friends.uid %>', '<%= friends.name %>')">x</button>
+											<form id="remove-friend" method="post" action="/removeFriend">
+												<input type="hidden" name="profileID" value="<%= id %>"> 
+												<input type="hidden" name="friendID" value="<%= friends.uid %>">
+												<input type="submit" id="removeFriend" value="x">
+											</form>
 										</div>
 										
 										<div class="link">
@@ -91,9 +97,9 @@
 												<% members.forEach(function(members) { 
 													var x = 0;
 													
-													console.log("M" + members.uid);
+													
 													for(var i = 0; i < friends.length; i++){
-														console.log("F" + friends[i].uid);
+														
 														if(members.uid != friends[i].uid){
 															x++;
 														}
@@ -133,39 +139,7 @@
 						
 								<h2>Schedule</h2>
 								<p>
-									<ul>
-										<li>Monday
-											<ul class="nested">
-												<li>Sociology 4107</li>
-												<li>MUCEP</li>
-											</ul>
-										</li>
-										<li>Tuesday
-											<ul class="nested">
-												<li>Computer Science 3715</li>
-												<li>Folklore 3930</li>
-												<li>4:00pm Work</li>
-											</ul>
-										</li>
-										<li>Wednesday
-											<ul class="nested">
-												<li>Sociology 4107</li>
-												<li>MUCEP</li>
-											</ul>
-										</li>
-										<li>Thursday
-											<ul class="nested">
-												<li>Computer Science 3715</li>
-												<li>Folklore 3930</li>
-												</li>Volunteering
-											</ul>
-										</li>
-										<li>Friday
-											<ul class="nested">
-												<li>MUCEP</li>
-											</ul>
-										</li>
-									</ul>
+									<%= profile.schedule %>
 								</p>
 							</aside>
 
