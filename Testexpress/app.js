@@ -8,7 +8,6 @@ var fs = require('fs');
 var index = require('./routes/index');
 var members = require('./routes/members');
 var map = require('./routes/maps');
-var groups = require('./routes/groups');
 var profile = require('./routes/profile');
 var profileEdit = require('./routes/profileEdit');
 //var expressValidator = require('express-validator');
@@ -35,7 +34,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/members', members);
-app.use('/groups', groups);
 app.use('/map', map);
 app.use('/profile', profile);
 app.use('/profileEdit', profileEdit);
@@ -67,11 +65,11 @@ app.post('/addFriend', function(req, res){
 					  friendArray = members[i].friends;
 					  friendArray.push(parseInt(req.body.members));
 					  members[i].friends = friendArray;
-					  members = JSON.stringify(members);
+					 
 					  break;
 				  }
 			  }
-			  
+			  members = JSON.stringify(members);
 			  fs.writeFile('data/members.json', members, function(error) {
 				     if (error) {
 				       console.error("write error:  " + error.message);
@@ -115,11 +113,11 @@ app.post('/removeFriend', function(req, res){
 					  }
 					  console.log(friendArray);
 					  members[i].friends = friendArray;
-					  members = JSON.stringify(members);
+					 
 					  break;
 				  }
 			  }
-			  
+			  members = JSON.stringify(members);
 			  fs.writeFile('data/members.json', members, function(error) {
 				     if (error) {
 				       console.error("write error:  " + error.message);
