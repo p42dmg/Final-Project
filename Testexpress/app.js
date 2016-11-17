@@ -10,7 +10,8 @@ var members = require('./routes/members');
 var map = require('./routes/maps');
 var groups = require('./routes/groups');
 var profile = require('./routes/profile');
-var profileEdit = require('./routes/profileEdit')
+var profileEdit = require('./routes/profileEdit');
+//var expressValidator = require('express-validator');
 
 var app = express();
 
@@ -20,8 +21,8 @@ app.set('view engine', 'ejs');
 //checking that I can change 
 
 //set port
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(3333, function () {
+  console.log('The Network listening on port 3333!');
 });
 
 // uncomment after placing your favicon in /public
@@ -42,7 +43,9 @@ app.use('/profileEdit', profileEdit);
  * Parses the text as JSON and exposes the resulting object on req.body.
  */
 app.use(bodyParser.json());
+//app.use(expressValidator); 
 
+//profile add friend form post
 app.post('/addFriend', function(req, res){
 	//needs to get profile id from url
 	//and update friend added to json
@@ -83,6 +86,7 @@ app.post('/addFriend', function(req, res){
 	res.redirect('back');
 });
 
+//profile remove friend form post
 app.post('/removeFriend', function(req, res){
 	//needs to get profile id from url
 	//and update friend added to json
@@ -130,6 +134,7 @@ app.post('/removeFriend', function(req, res){
 	res.redirect('back');
 });
 
+//profile edit profile form post
 app.post('/editProfile', function(req, res){
 	console.log(req.body);
 	var members;
@@ -149,6 +154,7 @@ app.post('/editProfile', function(req, res){
 					  members[i].gender = req.body.gender;
 					  members[i].bio = req.body.bio;
 					  members[i].schedule = req.body.schedule;
+					  members[i].school = req.body.school;
 					  break;
 				  }
 			  }
