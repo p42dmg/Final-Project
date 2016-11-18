@@ -15,4 +15,23 @@
 		"markerID":3
 	}
 
-],"school":"Memorial University","gender":"Female","birthday":"Aug. 21, 1986","phoneNumber":"(709)xxx-xxxx","bio":"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.","friends":[2,3,5],"schedule":"This is a test of the edit form!"},{"uid":"2","name":"Joseph Gibson","icon":"icon01.png","iconLarge":"prof01.jpg","age":"20","location":"St. John's","school":"Memorial University","gender":"Male","birthday":"Birthday","phoneNumber":"(709)xxx-xxxx","bio":"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.","friends":[2,3],"schedule":""},{"uid":"3","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"age","location":"","school":"school","gender":"gender","birthday":"birthday","phoneNumber":"","bio":"this is a bio, write a few words about yourself! ","friends":[],"schedule":"This is a schedule, there's a weird glitch where it takes up too much space if its left empty. "},{"uid":"4","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"5","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"6","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"7","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"8","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"9","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"10","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""}]
+],"school":"Memorial University","gender":"Female","birthday":"Aug. 21, 1986","phoneNumber":"(709)xxx-xxxx","bio":"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.","friends":[2,3],"schedule":"This is a test of the edit form!"},{"uid":"2","name":"Joseph Gibson","icon":"icon01.png","iconLarge":"prof01.jpg","age":"20","locations":[
+	{
+		"lat":47.5129155,
+		"lon":-52.8102325,
+		"date":"17/11/2016 21:38:26",
+		"location":"Detect Location",
+		"markerID":3
+	}
+
+],"school":"Memorial University","gender":"Male","birthday":"Birthday","phoneNumber":"(709)xxx-xxxx","bio":"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.","friends":[2,3],"schedule":""},{"uid":"3","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"age","locations":[
+	
+	{
+		"lat":47.57337,
+		"lon":-52.735682,
+		"date":"17/11/2016 21:40:23",
+		"location":"MUN Center",
+		"markerID":3
+	}
+
+],"school":"school","gender":"gender","birthday":"birthday","phoneNumber":"","bio":"this is a bio, write a few words about yourself! ","friends":[],"schedule":"This is a schedule, there's a weird glitch where it takes up too much space if its left empty. "},{"uid":"4","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"5","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"6","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"7","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"8","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"9","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""},{"uid":"10","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","location":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[],"schedule":""}]

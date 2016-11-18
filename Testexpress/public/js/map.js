@@ -1,19 +1,4 @@
-window.onload = initialize;
-var map;
-var Lat;
-var Lon;
-var recentLocations = new Array();
 
-//Initalize map, location markers, and table
-function initialize(){
-	getMyLocation();
-	initMap();
-	var button = document.getElementById("addLocation");
-	button.onclick = add;
-	getLocations();
-	createMarkers(recentLocations);
-	drawTable(recentLocations);
-}
 
 /*===============*/
 /* INITALIZE MAP */

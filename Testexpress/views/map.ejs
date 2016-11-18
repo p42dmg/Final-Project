@@ -13,6 +13,24 @@
 		<script src="/js/location_store.js"></script>
 		<script src="/js/newLocation.js"></script>
 		<script src="/js/lastFive.js"></script>
+		<script>
+			window.onload = initialize;
+			var map;
+			var Lat;
+			var Lon;
+			var recentLocations = <%- locationArray %>;
+			
+			//Initalize map, location markers, and table
+			function initialize(){
+				getMyLocation();
+				initMap();
+				var button = document.getElementById("addLocation");
+				button.onclick = add;
+				//getLocations();
+				createMarkers(recentLocations);
+				drawTable(recentLocations);
+			}
+		</script>
 		<title>The Network | Tracker</title>
 	
 	</head>
@@ -57,10 +75,15 @@
 										<p class="input"> 
 											<select name="members" id="selectMember">
 												<option value="" id="default"></option>
-												<option value="John Smith" id="John Smith">John Smith</option>
-												<option value="Jane Doe" id="Jane Doe">Jane Doe</option>
-												<option value="Danielle Gillespie" id="Danielle Gillespie">Danielle Gillespie</option>
-												<option value="Joseph Gibson" id="Joseph Gibson">Joseph Gibson</option>
+												<% members.forEach(function(members) { 
+													
+													%>
+												<option value="<%= members.uid %>" id="<%= members.name %>"><%= members.name %></option>
+												<% 
+														
+												}); 
+											
+												%>
 											</select>
 										</p>
 									</div>
