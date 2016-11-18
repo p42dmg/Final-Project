@@ -36,6 +36,7 @@ router.get('/', function(req, res, next) {
 				  var len = friendLocations.length;
 				  var lastIndex = len - 1;
 				  var last = friendLocations[lastIndex];
+				  last.name = friendData.name;
 				  locationArray.push(last);
 			  }
 			 // console.log(locationArray);
