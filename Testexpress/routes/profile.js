@@ -11,7 +11,6 @@ router.get('/', function(req, res, next) {
 	    	
 	    	//console.log(" user id: " + data[i].uid);
 	        if (data[i].uid == idToLookFor) {
-	        	//console.log("data: " + data[i]);
 	            return(data[i]);
 	        }
 	    }
@@ -33,12 +32,13 @@ router.get('/', function(req, res, next) {
 			  if(members[i].uid === id){
 				  profile = members[i];
 				  friends = profile.friends;
+				  
 				 // console.log(friends);
 				  break;
 			  }
 		  }
 		  for(i = 0; i < friends.length; i++){
-			 // console.log(friends[i]);
+			 
 			  friendsArray.push(findID(members, friends[i]));
 		  }
 		 // console.log(friendsArray);

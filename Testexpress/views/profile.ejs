@@ -40,7 +40,7 @@
 									<h1 id="profile-name"><%= profile.name %></h1>
 									
 									<p class="profile-info">
-										<%= profile.age %> | <%= profile.gender %> | <a href="/map?id=<%= profile.uid %>" title="Location"><%= profile.locations[profile.locations.length-1].location %></a><br>
+										<%= profile.age %> | <%= profile.gender %> | <a href="/map?id=<%= profile.uid %>" title="Location"><% if(profile.locations.length != 0){ profile.locations[profile.locations.length-1].location } %></a><br>
 										<%= profile.birthday %> | <%= profile.phoneNumber %>
 									</p>
 									<p class="profile-blurb"><%= profile.bio %></p>

@@ -39,7 +39,8 @@ router.get('/', function(req, res, next) {
 				  last.name = friendData.name;
 				  locationArray.push(last);
 			  }
-			 // console.log(locationArray);
+			  console.log(locationArray);
+			  
 			  res.render('map', { 
 				  title: 'The Network - Map' ,
 				  locationArray: JSON.stringify(locationArray),
