@@ -11,7 +11,6 @@ var map = require('./routes/maps');
 var profile = require('./routes/profile');
 var profileEdit = require('./routes/profileEdit');
 
-//var expressValidator = require('express-validator');
 
 var app = express();
 var http = require('http').Server(app);
@@ -27,15 +26,22 @@ http.listen(3333, function () {
   console.log('The Network listening on port 3333!');
 });
 
+//socket for communication back and forth between client and server
 io.on('connection', function(socket){
 	  console.log('Connected');
 	  
-	  setInterval(function () {
+	 /* setInterval(function () {
  			 socket.emit('hi', 'hello client!');
-		}, 1000);
+		}, 1000);*/
 
 	  socket.on('hello', function(msg){
 		    console.log('message: ' + msg);
+	  });
+	  
+	  socket.on('location', function(obj){
+		    console.log('user:' + obj.id + ' is at location: ' + obj.latitude + " " + obj.longitude);
+		  //find member in file and update location
+			
 	  });
 });
 
@@ -47,6 +53,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//page routing, all the logic for displaying page on load is in routes
 app.use('/', index);
 app.use('/members', members);
 app.use('/map', map);
@@ -57,7 +64,7 @@ app.use('/profileEdit', profileEdit);
  * Parses the text as JSON and exposes the resulting object on req.body.
  */
 app.use(bodyParser.json());
-//app.use(expressValidator); 
+
 
 
 
@@ -122,6 +129,7 @@ app.post('/removeFriend', function(req, res){
 		  else{
 			
 			  members = JSON.parse(data);
+			  //go through file and find member
 			  for(var i = 0; i < members.length; i++){
 				  if(members[i].uid === req.body.profileID){
 					  friendArray = members[i].friends;
@@ -153,6 +161,8 @@ app.post('/removeFriend', function(req, res){
 });
 
 //profile edit profile form post
+//we won't be needing this but keeping it now for testing purposes,
+// easier to add user info to our JSON file this way
 app.post('/editProfile', function(req, res){
 	console.log(req.body);
 	var members;
@@ -173,6 +183,9 @@ app.post('/editProfile', function(req, res){
 					  members[i].bio = req.body.bio;
 					  members[i].schedule = req.body.schedule;
 					  members[i].school = req.body.school;
+					  members[i].icon = req.body.icon;
+					  members[i].iconLarge = req.body.iconLarge;
+					  members[i].phoneNumber = req.body.number;
 					  break;
 				  }
 			  }
@@ -189,81 +202,6 @@ app.post('/editProfile', function(req, res){
 	res.redirect('profile?id=' + req.body.profileID);
 });
 
-//map add new location
-app.post('/addLocation', function(req, res){
-	//create new location object
-	console.log(req.body);
-	var uid = req.body.members;
-	var location = req.body.location;
-	var d = new Date();
-	d = d.toJSON().slice(0,10).replace(new RegExp("-", 'g'),"/" ).split("/").reverse().join("/")+" "+d.toJSON().slice(11,19);
-	var loci;
-	var lat;
-	var lon;
-	if(location == "Downtown"){
-		loci = {lat: 47.560541, lng: -52.712831};
-		lat = 47.560541;
-		lon = -52.712831;
-	}
-	else if(location == "Avalon Mall"){
-		loci = {lat: 47.561624, lng: -52.756078};
-		lat =  47.561624;
-		lon = -52.756078;
-	}
-	else if(location == "Village Mall"){
-		loci = {lat: 47.535139, lng: -52.750983};
-		lat = 47.535139;
-		lon = -52.750983;
-	}
-	else if(location == "MUN Center"){
-		loci = {lat: 47.573370, lng: -52.735682};
-		lat =  47.573370;
-		lon = -52.735682;
-	}
-	else{
-		loci = {lat: Lat, lng: Lon};
-		lat = Lat;
-		lon = Lon;
-	}
-	
-	var l = {
-			lat: lat,
-			lon: lon,
-			date: d,
-			location: location,
-		}
-	
-	//find member in file and update location
-	var members;
-	var locationsArray = new Array();
-	fs.readFile('data/members.json', 'utf8', function (err, data) {
-		  if (err){
-			  throw err;
-		  }
-		  else{
-			
-			  members = JSON.parse(data);
-			  for(var i = 0; i < members.length; i++){
-				  if(members[i].uid === uid){
-					  locationsArray = members[i].locations;
-					  locationsArray.push(l);
-					  members[i].locations = locationsArray;
-					  break;
-				  }
-			  }
-			  members = JSON.stringify(members);
-			  fs.writeFile('data/members.json', members, function(error) {
-				     if (error) {
-				       console.error("write error:  " + error.message);
-				     } else {
-				       console.log("Successful");
-				     }
-				});
-		  	}
-		  });
-	
-	res.redirect('map?id=' + req.body.profileID);
-});
 
 //404 needs to come after posts otherwise they won't work
 //catch 404 and forward to error handler

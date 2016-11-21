@@ -5,23 +5,13 @@
 	<head>
 		
 		<% include head %>
+		
 		<link rel="stylesheet" type="text/css" href="/stylesheets/map.css">
 		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		
 		<script src="/js/markers.js"></script>
 		<script src="/js/map.js"></script>
-		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-		<script>
-		  var socket = io();
-		  setInterval(function () {
-       			 socket.emit('hello', 'hello server!');
-			}, 1000);
-			
-			socket.on('hi', function(msg){
-		   		 console.log('message: ' + msg);
-	 		 });
-		</script>
-		<script>
+				<script>
 			window.onload = initialize;
 			var map;
 			var Lat;
@@ -37,7 +27,7 @@
 				drawTable(recentLocations);
 			}
 		</script>
-		<title>The Network | Tracker</title>
+		<title><%=title %></title>
 	
 	</head>
 	
