@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
 	var members;
 	var friends;
 	var locationArray = new Array();
+	var profile;
 	fs.readFile('data/members.json', 'utf8', function (err, data) {
 		  if (err){
 			  throw err;
@@ -39,12 +40,13 @@ router.get('/', function(req, res, next) {
 				  last.name = friendData.name;
 				  locationArray.push(last);
 			  }
-			  console.log(locationArray);
+			  //console.log(locationArray);
 			  
 			  res.render('map', { 
 				  title: 'The Network - Map' ,
 				  locationArray: JSON.stringify(locationArray),
-				  members: members
+				  members: members,
+				  id: id
 			  });
 		  }
 		});

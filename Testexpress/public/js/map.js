@@ -49,60 +49,6 @@ function displayError(error) {
 /*====================*/
 /* ON LOAD FUNCTIONS  */
 /* ===================*/
-//gets most recent location per user to display on map at load time
-
-function getLocations(){
-	var locationarray = getLocationArray("locationArray");
-	var numMembers = 4; //hard coded for now
-	var x = 1;
-	for(var i = locationarray.length -1; i >= 0; i--){
-		if(x == numMembers){
-			break;
-		}
-		else{
-			var key = locationarray[i];
-			var pos = localStorage.getItem(key);
-			pos = JSON.parse(pos);
-			console.log(pos);
-			console.log(x);
-			name = pos.name;
-			if(x == 1){
-				recentLocations.push(pos);
-				x++;
-			}
-			else{
-				if(find(name) == false){
-					recentLocations.push(pos);
-					x++;
-				}
-			}
-		}
-	}
-}
-
-//returns array of location references from local storage 
-function getLocationArray(key){
-	var locationArray = localStorage.getItem(key);
-	if (locationArray == null || locationArray == ""){
-		locationArray = new Array();
-	}
-	else {
-		locationArray = JSON.parse(locationArray);
-	}
-	return locationArray;
-}
-
-//search recent locations array for user, if they haven't been added yet, add them to array
-function find(name){
-	for(var i = 0; i < recentLocations.length; i++){
-		var temp = recentLocations[i];
-		var tempName = temp.name;
-		if(name == tempName){
-			return true;
-		}
-	}
-	return false;
-}
 
 //Draws table on page load based on most recently added locations for each user
  function drawTable(locations){

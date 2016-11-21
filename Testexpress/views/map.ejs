@@ -10,9 +10,17 @@
 		
 		<script src="/js/markers.js"></script>
 		<script src="/js/map.js"></script>
-		<script src="/js/location_store.js"></script>
-		<script src="/js/newLocation.js"></script>
-		<script src="/js/lastFive.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+		<script>
+		  var socket = io();
+		  setInterval(function () {
+       			 socket.emit('hello', 'hello server!');
+			}, 1000);
+			
+			socket.on('hi', function(msg){
+		   		 console.log('message: ' + msg);
+	 		 });
+		</script>
 		<script>
 			window.onload = initialize;
 			var map;
@@ -24,8 +32,6 @@
 			function initialize(){
 				getMyLocation();
 				initMap();
-				var button = document.getElementById("addLocation");
-				button.onclick = add;
 				//getLocations();
 				createMarkers(recentLocations);
 				drawTable(recentLocations);
@@ -68,8 +74,8 @@
 							</div>
 						
 							<div id="addMarker">
-								<form id="add-location">
-								
+								<form id="add-location" method="post" action="/addLocation">
+									<input type="hidden" name="profileID" value="<%= id %>"> 
 									<div class="tableRow">
 										<p class="label"> Member: </p>
 										<p class="input"> 
@@ -105,7 +111,7 @@
 									<div class="tableRow">
 										<p></p>
 										<p> 
-											<input type="button" id="addLocation" value="Add Location">
+											<input type="submit" id="addLocation" value="Add Location">
 										</p>
 									</div>
 								</form>
