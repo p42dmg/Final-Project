@@ -5,15 +5,29 @@
 	<head>
 		
 		<% include head %>
+		
 		<link rel="stylesheet" type="text/css" href="/stylesheets/map.css">
 		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		
 		<script src="/js/markers.js"></script>
 		<script src="/js/map.js"></script>
-		<script src="/js/location_store.js"></script>
-		<script src="/js/newLocation.js"></script>
-		<script src="/js/lastFive.js"></script>
-		<title>The Network | Tracker</title>
+				<script>
+			window.onload = initialize;
+			var map;
+			var Lat;
+			var Lon;
+			var recentLocations = <%- locationArray %>;
+			
+			//Initalize map, location markers, and table
+			function initialize(){
+				getMyLocation();
+				initMap();
+				//getLocations();
+				createMarkers(recentLocations);
+				drawTable(recentLocations);
+			}
+		</script>
+		<title><%=title %></title>
 	
 	</head>
 	
@@ -50,17 +64,22 @@
 							</div>
 						
 							<div id="addMarker">
-								<form id="add-location">
-								
+								<form id="add-location" method="post" action="/addLocation">
+									<input type="hidden" name="profileID" value="<%= id %>"> 
 									<div class="tableRow">
 										<p class="label"> Member: </p>
 										<p class="input"> 
 											<select name="members" id="selectMember">
 												<option value="" id="default"></option>
-												<option value="John Smith" id="John Smith">John Smith</option>
-												<option value="Jane Doe" id="Jane Doe">Jane Doe</option>
-												<option value="Danielle Gillespie" id="Danielle Gillespie">Danielle Gillespie</option>
-												<option value="Joseph Gibson" id="Joseph Gibson">Joseph Gibson</option>
+												<% members.forEach(function(members) { 
+													
+													%>
+												<option value="<%= members.uid %>" id="<%= members.name %>"><%= members.name %></option>
+												<% 
+														
+												}); 
+											
+												%>
 											</select>
 										</p>
 									</div>
@@ -82,7 +101,7 @@
 									<div class="tableRow">
 										<p></p>
 										<p> 
-											<input type="button" id="addLocation" value="Add Location">
+											<input type="submit" id="addLocation" value="Add Location">
 										</p>
 									</div>
 								</form>

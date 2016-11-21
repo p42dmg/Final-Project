@@ -10,9 +10,11 @@ var members = require('./routes/members');
 var map = require('./routes/maps');
 var profile = require('./routes/profile');
 var profileEdit = require('./routes/profileEdit');
-//var expressValidator = require('express-validator');
+
 
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io').listen(http);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,8 +22,27 @@ app.set('view engine', 'ejs');
 //checking that I can change 
 
 //set port
-app.listen(3333, function () {
+http.listen(3333, function () {
   console.log('The Network listening on port 3333!');
+});
+
+//socket for communication back and forth between client and server
+io.on('connection', function(socket){
+	  console.log('Connected');
+	  
+	 /* setInterval(function () {
+ 			 socket.emit('hi', 'hello client!');
+		}, 1000);*/
+
+	  socket.on('hello', function(msg){
+		    console.log('message: ' + msg);
+	  });
+	  
+	  socket.on('location', function(obj){
+		    console.log('user:' + obj.id + ' is at location: ' + obj.latitude + " " + obj.longitude);
+		  //find member in file and update location
+			
+	  });
 });
 
 // uncomment after placing your favicon in /public
@@ -32,16 +53,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//page routing, all the logic for displaying page on load is in routes
 app.use('/', index);
 app.use('/members', members);
 app.use('/map', map);
 app.use('/profile', profile);
 app.use('/profileEdit', profileEdit);
+
 /**bodyParser.json(options)
  * Parses the text as JSON and exposes the resulting object on req.body.
  */
 app.use(bodyParser.json());
-//app.use(expressValidator); 
+
+
+
+
+/*POSTS*/
 
 //profile add friend form post
 app.post('/addFriend', function(req, res){
@@ -102,6 +129,7 @@ app.post('/removeFriend', function(req, res){
 		  else{
 			
 			  members = JSON.parse(data);
+			  //go through file and find member
 			  for(var i = 0; i < members.length; i++){
 				  if(members[i].uid === req.body.profileID){
 					  friendArray = members[i].friends;
@@ -133,6 +161,8 @@ app.post('/removeFriend', function(req, res){
 });
 
 //profile edit profile form post
+//we won't be needing this but keeping it now for testing purposes,
+// easier to add user info to our JSON file this way
 app.post('/editProfile', function(req, res){
 	console.log(req.body);
 	var members;
@@ -153,6 +183,9 @@ app.post('/editProfile', function(req, res){
 					  members[i].bio = req.body.bio;
 					  members[i].schedule = req.body.schedule;
 					  members[i].school = req.body.school;
+					  members[i].icon = req.body.icon;
+					  members[i].iconLarge = req.body.iconLarge;
+					  members[i].phoneNumber = req.body.number;
 					  break;
 				  }
 			  }
@@ -169,7 +202,9 @@ app.post('/editProfile', function(req, res){
 	res.redirect('profile?id=' + req.body.profileID);
 });
 
-// catch 404 and forward to error handler
+
+//404 needs to come after posts otherwise they won't work
+//catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
@@ -186,7 +221,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 
 module.exports = app;

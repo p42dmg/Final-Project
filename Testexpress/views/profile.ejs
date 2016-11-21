@@ -5,8 +5,25 @@
 	<head>
 		<% include head %>
 		<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
-		<title>The Network | Members</title>
-	
+		<title><%=title %></title>
+		<script src="/js/userLocation.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+		<script>
+			
+		  var socket = io();
+		 /* setInterval(function () {
+       			// socket.emit('hello', 'hello server!');
+       			 var l = getMyLocation();
+       			 var id = <%=profile.uid %>;
+       			 l.id = id;
+       			 //console.log(l.id);
+       			//socket.emit('location', l);
+			}, 1000);*/
+			
+			socket.on('hi', function(msg){
+		   		 console.log('message: ' + msg);
+	 		 });
+		</script>
 	</head>
 	
 	<body>
@@ -40,7 +57,7 @@
 									<h1 id="profile-name"><%= profile.name %></h1>
 									
 									<p class="profile-info">
-										<%= profile.age %> | <%= profile.gender %> | <a href="/map" title="Location"><%= profile.location %></a><br>
+										<%= profile.age %> | <%= profile.gender %> | <a href="/map?id=<%= profile.uid %>" title="Location">Location</a><br>
 										<%= profile.birthday %> | <%= profile.phoneNumber %>
 									</p>
 									<p class="profile-blurb"><%= profile.bio %></p>
@@ -136,10 +153,26 @@
 							</article>
 							
 							<aside id="schedule">
-						
+								
 								<h2>Schedule</h2>
 								<p>
-									<%= profile.schedule %>
+									<ul>
+										<li>Monday
+											
+										</li>
+										<li>Tuesday
+											
+										</li>
+										<li>Wednesday
+											
+										</li>
+										<li>Thursday
+											
+										</li>
+										<li>Friday
+											
+										</li>
+									</ul>
 								</p>
 							</aside>
 
