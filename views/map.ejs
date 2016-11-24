@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		
+		<% include head %>
+		
+		<link rel="stylesheet" type="text/css" href="/stylesheets/map.css">
+        
+        <script src="/js/init.js" ></script>
+        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwj9bZZM0262sGVwKRRZ4H5z_VALFuHUc&callback=initMap" async type="text/javascript"> </script>
+        
+        <script src="/js/map.js" ></script>
+		<script src="/js/markers.js" ></script>
+
+		
+       	    
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+		<script>
+			
+		  	var socket = io();
+		  	var friends = [<%= friends %>];
+		  	var recentLocations = <%- locationArray %>;
+			window.onload = initialize;
+			
+			
+			//Initalize map, location markers, and table
+			function initialize(){
+				getMyLocation();
+				initMap();
+				getLocations(recentLocations);
+			}
+			function getLocations(recentLocations){
+				createMarkers(recentLocations);
+				drawTable(recentLocations);
+			}
+			var interval = (1000 * 60) * 2;
+			setInterval(function () {
+ 			 socket.emit('getLocations', friends);
+			}, interval);
+			
+			socket.on('newLocations', function(locationArray){
+				
+				getLocations(locationArray);
+				console.log("new location added");
+			});
+		</script>
+		<title><%=title %></title>
+	
+	</head>
+	
+	<body>
+	
+		<div id="wrapper">
+		
+			<!--HEADER-->
+			<header>
+			<img class="logo" src="/images/logo01.png" size="100px" height="100px">
+				<% include nav %>
+				
+			</header>
+			
+			<div id="container">
+			
+				<div id="content-wrap">
+				
+					<div id="main-header">
+						<h1>Tracker</h1>
+						
+						<p class="info">Mauris non finibus metus, et interdum mauris. Fusce in fermentum lectus. Donec accumsan mi tincidunt purus rhoncus dapibus id sed neque<p>
+					
+					</div>
+						
+					<div id="main-content">
+						<div id="main-content-wrap">
+							<div id="location">
+							
+							</div>
+						
+							<div id="map">
+								
+							</div>
+						
+							
+						
+							<div id="map-list">
+						          
+								<h2>Friends to Find: </h2>
+                                <table id="map-table">
+                                    <tr><th>Name</th>
+                                        <th>Location</th>
+										<th>Date Added</th>
+                                     
+                                    </tr> 
+                                    <tr id="defaultmsg"  class="odd">
+                                        <td colspan="3">Nobody has added a location yet!</td>
+                                    </tr>
+                                  
+                                
+                                </table>
+							</div>
+						
+							
+							
+							
+						
+						</div>
+						
+					</div>
+				
+				</div>
+			
+			</div>
+			
+			<!--FOOTER-->
+			<footer>
+				<% include footer %>
+			
+			</footer>
+		
+		</div>
+	
+	</body>
+	
+</html>

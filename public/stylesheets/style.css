@@ -1,0 +1,43 @@
+header, footer{
+	background-color: #027368;
+}
+
+#content-wrap{
+	width: 490px;
+	margin-top: 5%;
+	margin-right: 20%;
+	float: right;
+}
+
+#content-wrap .welcome{
+	font-size: 6em;
+}
+
+#content-wrap .login{ 
+	text-align: right;
+	margin-right: 5px;
+}
+
+#content-wrap .blurb{
+	padding: 5px;
+}
+
+#content-wrap a{
+	text-decoration: none;
+	color: #FFF1D0;
+}
+
+#content-wrap a:hover{
+	color: #400F13;
+}
+#Title-Graphic{
+    float: left;
+	height: 500px;
+	width: 20%; 
+	opacity: 0.3;
+}
+
+#Title-Graphic img{
+	height: 409px;
+	width: 300px;
+}

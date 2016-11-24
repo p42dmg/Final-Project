@@ -1,0 +1,29 @@
+
+db.users.insert(
+    [{name:"Danielle Gillespie", icon:"icon03.png", iconLarge:"prof03.jpg", age: "30", location: {lat":47.5717749", lon: "-52.734733600000006", date: "22/11/2016 17:25:52", location:"47.5717749 -52.734733600000006"}, school:"Memorial University", gender:"Female", birthday: "Aug. 21, 1986", phoneNumber:"(709)xxx-xxxx", bio:"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.", friends: [2,3,4]
+     }], 
+    [{
+        name:"Danielle Gillespie", icon:"icon03.png", iconLarge:"prof03.jpg", age: "30", location: {lat":47.5717749", lon: "-52.734733600000006", date: "22/11/2016 17:25:52", location:"47.5717749 -52.734733600000006"}, school:"Memorial University", gender:"Female", birthday: "Aug. 21, 1986", phoneNumber:"(709)xxx-xxxx", bio:"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.", friends: [2,3,4]
+        
+    }]
+)
+
+
+
+
+
+
+
+
+
+
+db.test.insert([{name:"Danielle Gillespie", icon:"icon03.png", iconLarge:"prof03.jpg", age: "30", location: {lat:"47.5717749", lon: "-52.734733600000006", date: "22/11/2016 17:25:52", location:"47.5717749 -52.734733600000006"}, school:"Memorial University", gender:"Female", birthday: "Aug. 21, 1986", phoneNumber:"(709)xxx-xxxx", bio:"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.", friends: [2,3,4]}],[{name:"xxxx", icon:"icon03.png", iconLarge:"prof03.jpg", age: "30", location: {lat:"47.5717749", lon: "-52.734733600000006", date: "22/11/2016 17:25:52", location:"47.5717749 -52.734733600000006"}, school:"Memorial University", gender:"Female", birthday: "Aug. 21, 1986", phoneNumber:"(709)xxx-xxxx", bio:"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.", friends: [2,3,4]}])
+
+db.users.insert({name:"Danielle Gillespie", icon:"icon03.png", iconLarge:"prof03.jpg", age: "30", location: {lat:"47.5717749", lon: "-52.734733600000006", date: "22/11/2016 17:25:52", location:"47.5717749 -52.734733600000006"}, school:"Memorial University", gender:"Female", birthday: "Aug. 21, 1986", phoneNumber:"(709)xxx-xxxx", bio:"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.", friends: [2,3,4]})
+
+
+
+
+
+
+[{"uid":"1","name":"Danielle Gillespie","icon":"icon03.png","iconLarge":"prof03.jpg","age":"30","location":{"lat":47.5717749,"lon":-52.734733600000006,"date":"22/11/2016 17:25:52","location":"47.5717749 -52.734733600000006"},"school":"Memorial University","gender":"Female","birthday":"Aug. 21, 1986","phoneNumber":"(709)xxx-xxxx","bio":"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.","friends":[2,3,4]},{"uid":"2","name":"Joseph Gibson","icon":"icon01.png","iconLarge":"prof01.jpg","age":"20","location":{"lat":47.565437499999994,"lon":-52.750518899999996,"date":"24/11/2016 01:26:42","location":"47.565437499999994 -52.750518899999996"},"school":"Memorial University","gender":"Male","birthday":"Birthday","phoneNumber":"(709)xxx-xxxx","bio":"Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt.","friends":[1,4,10]},{"uid":"3","name":"Katie Little","icon":"icon04.png","iconLarge":"prof02.jpg","age":"30","location":"","school":"CNA","gender":"Female","birthday":"Dec. 22 1986","phoneNumber":"","bio":"this is a bio, write a few words about yourself! ","friends":[9]},{"uid":"4","name":"John Smith","icon":"icon05.png","iconLarge":"prof02.jpg","age":"23","location":{"lat":47.5717267,"lon":-52.7347703,"date":"22/11/2016 16:26:58","location":"47.5717267 -52.7347703"},"school":"Tim Horton's ","gender":"Male","birthday":"Dec. 7 1993","phoneNumber":"","bio":"This is a bio for John Smith, he may or may not be a Time Lord. ","friends":[5]},{"uid":"5","name":"Jane Doe","icon":"icon06.png","iconLarge":"prof02.jpg","age":"30","location":"","school":"Memorial University","gender":"Female","birthday":"April, 11 1986","bio":"","phoneNumber":"(709)xxx-xxxx","friends":[]},{"uid":"6","name":"Jenny Doe","icon":"icon07.png","iconLarge":"prof02.jpg","age":"42","locations":"","school":"CNA","gender":"Female","birthday":"Mar. 31 1978","phoneNumber":"","bio":"","friends":[5]},{"uid":"7","name":"Nikola Tesla","icon":"icon08.png","iconLarge":"prof02.jpg","age":"deceased","location":"","school":"Inventor","gender":"Male","birthday":"July, 10. 1856","phoneNumber":"","bio":"","friends":[6,4]},{"uid":"8","name":"Marie Curie","icon":"icon09.png","iconLarge":"prof02.jpg","age":"deceased","locations":"","school":"Scientist","gender":"Female","birthday":"Nov. 7, 1857","phoneNumber":"","bio":"","friends":[4,7]},{"uid":"9","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","locations":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[]},{"uid":"10","name":"Test","icon":"icon02.png","iconLarge":"prof02.jpg","age":"","locations":"","school":"","gender":"","birthday":"","phoneNumber":"","bio":"","friends":[]}]

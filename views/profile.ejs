@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<% include head %>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/profile.css">
+		<title><%=title %></title>
+		<script src="/js/userLocation.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+		<script>
+			getMyLocation(); //hack to fix lat and long coming up undefined the first time it runs
+		  var socket = io();
+		  var interval = (1000 * 60);
+		  setInterval(function () {
+       			// socket.emit('hello', 'hello server!');
+       			 var l = getMyLocation();
+       			 var id = <%=profile.uid %>;
+       			 l.id = id;
+       			 //console.log(l.id);
+       			socket.emit('location', l);
+			}, interval);
+		
+		</script>
+	</head>
+	
+	<body>
+	
+		<div id="wrapper">
+		
+			<!--HEADER-->
+			<header>
+			<img class="logo" src="/images/logo01.png" size="100px" height="100px">
+				
+				<% include nav %>
+				
+			</header>
+			
+			<div id="container">
+			
+				<div id="content-wrap">
+				
+					<div id="main-header"> <!-- content table row 1-->
+					
+						<div id="profile"> <!-- header table -->
+						
+							<div id="user-img"> <!-- header table cell 1-->
+								<a href="/images/<%= profile.iconLarge %>" title="Click for full size image" class="avatar"><img src="/images/<%= profile.icon %>" alt="Avatar thumbnail"></a>
+								<br>
+								<a href="/profileEdit?id=<%=profile.uid %>">Edit</a>
+							</div>
+							
+							<div id="bio"> <!--header table cell 2-->
+								<div id="bio-wrapper"> <!-- cell 2 wrapper for padding/margin-->
+									<h1 id="profile-name"><%= profile.name %></h1>
+									
+									<p class="profile-info">
+										<%= profile.age %> | <%= profile.gender %> | <a href="/map?id=<%= profile.uid %>" title="Location">Location</a><br>
+										<%= profile.birthday %> | <%= profile.phoneNumber %>
+									</p>
+									<p class="profile-blurb"><%= profile.bio %></p>
+								</div> <!--end cell 2 wrapper-->
+							</div>
+						</div><!--end header table-->
+					</div> <!-- end content row 1-->
+					
+					<div id="main-content"> <!--content table row 2-->
+					
+						<div id="main-content-wrap"> <!-- wrapper for row content-->
+							
+							<article id="friends">
+								<h2>Friends</h2>
+								<ul id="friendlist">
+								
+								<% friends.forEach(function(friends) { %>
+									<li id="friend_<%= friends.uid %>">
+										
+										<div class="remove">
+											<form id="remove-friend" method="post" action="/removeFriend">
+												<input type="hidden" name="profileID" value="<%= id %>"> 
+												<input type="hidden" name="friendID" value="<%= friends.uid %>">
+												<input type="submit" id="removeFriend" value="x">
+											</form>
+										</div>
+										
+										<div class="link">
+										
+											<a href="profile?id=<%= friends.uid %>" title="<%= friends.name %>n">
+												<div class="friend-img">
+													<img class="small-icon" src="/images/<%= friends.icon %>" alt="<%= friends.name %>" >
+												</div>
+												
+												<div class="friend-info">
+													<p><%= friends.name %><br> <%= friends.school %> | <%= friends.age %> | <%= friends.location %></p>
+												</div>
+											</a>
+										
+										</div>
+										
+									</li>
+									<% }); %>
+							
+								</ul>
+								
+								<form id="add-friend" method="post" action="/addFriend">
+								
+									<div class="tableRow">
+										<p class="label"> Member to Add: </p>
+										<p class="input"> 
+											<select name="members" id="selectMember">
+												<option value="" id="default"></option>
+												<% members.forEach(function(members) { 
+													var x = 0;
+													
+													
+													for(var i = 0; i < friends.length; i++){
+														
+														if(members.uid != friends[i].uid){
+															x++;
+														}
+														else{
+															break;
+														}
+														if(x == friends.length && members.uid != friends[i].uid && members.uid != id){
+														//console.log("add");
+													%>
+												<option value="<%= members.uid %>" id="<%= members.name %>"><%= members.name %></option>
+												<% 
+														}
+													}
+													if(friends.length == 0 && members.uid != id){
+														%>
+												<option value="<%= members.uid %>" id="<%= members.name %>"><%= members.name %></option>
+												<% 
+													}
+												}); 
+											
+												%>
+											</select>
+										</p>
+									</div>
+									<input type="hidden" name="profileID" value="<%= id %>">
+									<div class="tableRow">
+										<p></p>
+										<p> 
+											<input type="submit" id="addFriend" value="Add Friend">
+										</p>
+									</div>
+								</form>
+							
+							</article>
+							
+							<aside id="schedule">
+								
+								<h2>Schedule</h2>
+								<p>
+									<ul>
+										<li>Monday
+											
+										</li>
+										<li>Tuesday
+											
+										</li>
+										<li>Wednesday
+											
+										</li>
+										<li>Thursday
+											
+										</li>
+										<li>Friday
+											
+										</li>
+									</ul>
+								</p>
+							</aside>
+
+						</div> <!--end content row 2 wrapper-->
+					
+					</div> <!-- end content row 2-->
+					
+					
+				</div>
+			
+			</div>
+			
+			<!--FOOTER-->
+			<footer>
+				
+				<% include footer %>
+			
+			</footer>
+		
+		</div>
+	
+	</body>
+	
+</html>

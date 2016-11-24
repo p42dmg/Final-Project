@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<% include head %>
+		
+		<title>The Network | Groups</title>
+	
+	</head>
+	
+	<body>
+	
+		<div id="wrapper">
+		
+			<!--HEADER-->
+			<header>
+			<img class="logo" src="/images/logo01.png" size="100px" height="100px">
+				<% include nav %>
+				
+			</header>
+			
+			<div id="container">
+			
+				<div id="content-wrap">
+				
+					<div id="main-header">
+						<h1>Edit Profile</h1>
+						
+						<p>Mauris non finibus metus, et interdum mauris. Fusce in fermentum lectus. Donec accumsan mi tincidunt purus rhoncus dapibus id sed neque<p>
+					
+					</div>
+					
+					<div id="main-content">
+					
+						<div id="main-content-wrap">
+						
+							<form name = "student" method = "post" action = "/editProfile?id=<%= profileID %>">
+								<table>
+								<tr>
+								<td>Name:</td>
+								<td><input type = "text" name = "name" size = "15" value = "<%= profile.name %>"></td>
+								</tr>
+								<tr>
+								<td>Date of Birth:</td>
+								<td><input type = "text" name = "dob" size = "15" value = "<%= profile.birthday %>"></td>
+								</tr>
+								<tr>
+								<td>School/Work:</td>
+								<td><input type = "text" name = "school" size = "15" value = "<%= profile.school %>"></td>
+								</tr>
+								<tr>
+								<td>Phone Number:</td>
+								<td><input type = "text" name = "phone" size = "15" value = "<%= profile.phoneNumber %>"></td>
+								</tr>
+								<tr>
+								<td>Age:</td>
+								<td><input type = "text" name = "age" size = "15" value = "<%= profile.age %>"></td>
+								</tr>
+								<tr>
+								<td>Gender:</td>
+								<td><input type = "text" name = "gender" size = "15" value = "<%= profile.gender %>"></td>
+								</tr>
+								<tr>
+								<td>Icon:</td>
+								<td><input type = "text" name = "icon" size = "15" value = "<%= profile.icon %>"></td>
+								</tr>
+								<tr>
+								<td>Icon Large:</td>
+								<td><input type = "text" name = "iconLarge" size = "15" value = "<%= profile.iconLarge %>"></td>
+								</tr>
+								<tr>
+								<td>Bio:</td>
+								<td><textarea name="bio" rows="10" cols="20"><%= profile.bio %></textarea></td>
+								</tr>
+								<tr>
+								<td>Schedule:</td>
+								<td><textarea name="schedule" rows="10" cols="20" ><%= profile.schedule %></textarea></td>
+								</tr>
+								<tr>
+								<td colspan ="2"><input type="hidden" name="profileID" value="<%= profileID %>">
+								<input type = "submit" value = "Submit" name = "submit">
+								</td>
+								</tr>
+								</table>
+							</form>
+						
+						</div>
+					
+					</div>
+				
+				</div>
+			
+			</div>
+			
+			<!--FOOTER-->
+			<footer>
+				<% include footer %>
+			
+			</footer>
+		
+		</div>
+	
+	</body>
+	
+</html>

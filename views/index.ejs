@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<% include head %>
+		<link rel='stylesheet' href='/stylesheets/index.css' />
+		<title><%=title %></title>
+		
+	</head>
+	
+	<body class="index">
+	
+		<div id="wrapper">
+		
+			<!--HEADER-->
+			<header>
+			
+				<% include nav %>
+				
+			</header>
+			
+			<div id="container">
+			     <div id="Title-Graphic">
+                     <img src="/images/logo02.png"  alt= "The Network">
+                </div>
+				<!--CONTENT-->
+				<div id="content-wrap">
+					
+					<p class="login">
+						<a href="#" title="Log in">Login</a> | <a href="#" title="Register">Register</a>
+					</p>
+					<p class="welcome">Welcome.</p>
+					<p class="blurb">The network is a small scale social networking site created for COMP 3715 by Danielle Gillespie and Joseph Gibson. Enjoy your stay! </p>
+                    
+                    <p>
+                          <a href="/get-data">LOAD DATA</a> 
+                        {{# each items }}
+                        <article class="item">
+                            <div>Title: {{ this.title }}</div>
+                            <div>Content: {{ this.content }}</div>
+                            <div>ID: {{ this._id }}</div>
+                        </article>
+                        {{/each}}
+                    </p>
+					
+				
+				</div>
+			
+			</div>
+			
+			<!--FOOTER-->
+			<footer>
+				
+				<%include footer %>
+			
+			</footer>
+		
+		</div>
+	
+	</body>
+	
+</html>
