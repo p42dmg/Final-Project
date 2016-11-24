@@ -39,9 +39,10 @@ router.get('/', function(req, res, next) {
 				 // console.log(friendID);
 				  var friendData = members[friendID - 1];
 				  var friendLocation = friendData.location;
+				  if(friendLocation != null){
 				  friendLocation.name = friendData.name;
-				 console.log(friendLocation);
-				 if(friendLocation != ""){
+				  	console.log(friendLocation);
+				 
 				  	locationArray.push(friendLocation);
 			  	}
 			  	
