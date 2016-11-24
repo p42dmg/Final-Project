@@ -30,26 +30,30 @@ router.get('/', function(req, res, next) {
 					  break;
 				  }
 			  }
-			  //for each friend, get the last entry in their location array
+			  //for each friend, get their location array
 			  for(i = 0; i < friends.length; i++){
+				  //if their location isn't empty, get the location and add it to the array
+				  //to be sent to server
+				  
 				  var friendID = friends[i];
 				 // console.log(friendID);
 				  var friendData = members[friendID - 1];
-				  var friendLocations = friendData.locations;
-				 // console.log(friendLocations.length);
-				  var len = friendLocations.length;
-				  var lastIndex = len - 1;
-				  var last = friendLocations[lastIndex];
-				  last.name = friendData.name;
-				  locationArray.push(last);
+				  var friendLocation = friendData.location;
+				  friendLocation.name = friendData.name;
+				 console.log(friendLocation);
+				 if(friendLocation != ""){
+				  	locationArray.push(friendLocation);
+			  	}
+			  	
 			  }
-			  //console.log(locationArray);
+			  console.log(locationArray);
 			  //render the map page, and pass the location array to it
 			  res.render('map', { 
 				  title: 'The Network - Map' ,
 				  locationArray: JSON.stringify(locationArray),
 				  members: members,
-				  id: id
+				  id: id,
+				  friends: friends
 			  });
 		  }
 		});
