@@ -38,32 +38,30 @@ io.on('connection', function(socket){
 		    		lat: obj.latitude,
 		    		lon: obj.longitude,
 		    		date: obj.date,
-		    		location: obj.latitude + " " + obj.longitude
+		    		location: obj.latitude + " " + obj.longitude,
+		    		name: obj.name
 		    }
-		    fs.readFile('data/members.json', 'utf8', function (err, data) {
+		    fs.readFile('data/locations.json', 'utf8', function (err, data) {
 				  if (err){
 					  throw err;
 				  }
 				  else{
-					  members = JSON.parse(data);
+					  locations = JSON.parse(data);
 					  //find member in JSON file
-					  for(var i = 0; i < members.length; i++){
-						  if(members[i].uid == obj.id){
-							  profile = members[i];
+					  		
+							  //profile = locations[obj.id - 1];
 							  //set new location object to location field
-							  profile.location = l;
-							  members = JSON.stringify(members);
+							  locations[obj.id - 1]  = l;
+							  locations = JSON.stringify(locations);
 							  //rewrite changes to file
-							  fs.writeFile('data/members.json', members, function(error) {
+							  fs.writeFile('data/locations.json', locations, function(error) {
 								     if (error) {
 								       console.error("write error:  " + error.message);
 								     } else {
 								       console.log("Successful");
 								     }
 								});
-							  break;
-						  }
-					  }
+							
 				  }
 		    });
 	  });
@@ -75,13 +73,13 @@ io.on('connection', function(socket){
 			var locationArray = new Array();
 			var profile;
 			//open members.JSON file
-			fs.readFile('data/members.json', 'utf8', function (err, data) {
+			fs.readFile('data/locations.json', 'utf8', function (err, data) {
 				  if (err){
 					  throw err;
 				  }
 				  else{
 					
-					  members = JSON.parse(data);
+					  locations = JSON.parse(data);
 					  //for each friend, get their location array
 					  for(i = 0; i < friends.length; i++){
 						  //if their location isn't empty, get the location and add it to the array
@@ -89,9 +87,8 @@ io.on('connection', function(socket){
 						  
 						  var friendID = friends[i];
 						 // console.log(friendID);
-						  var friendData = members[friendID - 1];
-						  var friendLocation = friendData.location;
-						  friendLocation.name = friendData.name;
+						  var friendLocation = locations[friendID - 1];
+						  
 						 console.log(friendLocation);
 						 if(friendLocation != ""){
 						  	locationArray.push(friendLocation);
