@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
 	  else{
 		 // console.log(data);
 		  members = JSON.parse(data);
+		  
 		  //find friend list for ID
 		  for(var i = 0; i < members.length; i++){
 			  if(members[i].uid === id){

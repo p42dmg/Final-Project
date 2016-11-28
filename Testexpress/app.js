@@ -135,8 +135,6 @@ app.post('/addFriend', function(req, res){
 	//needs to get profile id from url
 	//and update friend added to json
 	//then rediect back to profile page
-	
-	console.log(req.body);
 	//open data file
 	var friendArray;
 	var members;
@@ -145,14 +143,13 @@ app.post('/addFriend', function(req, res){
 			  throw err;
 		  }
 		  else{
-			
 			  members = JSON.parse(data);
 			  for(var i = 0; i < members.length; i++){
+				  console.log(members[1]);
 				  if(members[i].uid === req.body.profileID){
 					  friendArray = members[i].friends;
 					  friendArray.push(parseInt(req.body.members));
 					  members[i].friends = friendArray;
-					 
 					  break;
 				  }
 			  }
@@ -201,10 +198,10 @@ app.post('/removeFriend', function(req, res){
 					  }
 					  console.log(friendArray);
 					  members[i].friends = friendArray;
-					 
 					  break;
 				  }
 			  }
+			  
 			  members = JSON.stringify(members);
 			  fs.writeFile('data/members.json', members, function(error) {
 				     if (error) {
