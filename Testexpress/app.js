@@ -22,26 +22,86 @@ app.set('view engine', 'ejs');
 //checking that I can change 
 
 //set port
-http.listen(3333, function () {
-  console.log('The Network listening on port 3333!');
+http.listen(3332, function () {
+  console.log('The Network listening on port 3332!');
 });
 
 //socket for communication back and forth between client and server
 io.on('connection', function(socket){
 	  console.log('Connected');
 	  
-	 /* setInterval(function () {
- 			 socket.emit('hi', 'hello client!');
-		}, 1000);*/
-
-	  socket.on('hello', function(msg){
-		    console.log('message: ' + msg);
-	  });
-	  
 	  socket.on('location', function(obj){
 		    console.log('user:' + obj.id + ' is at location: ' + obj.latitude + " " + obj.longitude);
 		  //find member in file and update location
-			
+		    var members, location, profile;
+		    var l = {
+		    		lat: obj.latitude,
+		    		lon: obj.longitude,
+		    		date: obj.date,
+		    		location: obj.latitude + " " + obj.longitude,
+		    		name: obj.name
+		    }
+		    fs.readFile('data/locations.json', 'utf8', function (err, data) {
+				  if (err){
+					  throw err;
+				  }
+				  else{
+					  locations = JSON.parse(data);
+					  //find member in JSON file
+					  		
+							  //profile = locations[obj.id - 1];
+							  //set new location object to location field
+							  locations[obj.id - 1]  = l;
+							  locations = JSON.stringify(locations);
+							  //rewrite changes to file
+							  fs.writeFile('data/locations.json', locations, function(error) {
+								     if (error) {
+								       console.error("write error:  " + error.message);
+								     } else {
+								       console.log("Successful");
+								     }
+								});
+							
+				  }
+		    });
+	  });
+	  
+	  socket.on('getLocations', function(friends){
+		  	var members;
+			var friends;
+			//console.log(friends);
+			var locationArray = new Array();
+			var profile;
+			//open members.JSON file
+			fs.readFile('data/locations.json', 'utf8', function (err, data) {
+				  if (err){
+					  throw err;
+				  }
+				  else{
+					
+					  locations = JSON.parse(data);
+					  //for each friend, get their location array
+					  for(i = 0; i < friends.length; i++){
+						  //if their location isn't empty, get the location and add it to the array
+						  //to be sent to server
+						  
+						  var friendID = friends[i];
+						 // console.log(friendID);
+						  var friendLocation = locations[friendID - 1];
+						  
+						 console.log(friendLocation);
+						 if(friendLocation != ""){
+						  	locationArray.push(friendLocation);
+						  	console.log(locationArray);
+						  	socket.emit('newLocations', locationArray);
+					  	}
+					  	
+					  }
+					 
+					  
+				  }
+				});
+		  
 	  });
 });
 
@@ -75,8 +135,6 @@ app.post('/addFriend', function(req, res){
 	//needs to get profile id from url
 	//and update friend added to json
 	//then rediect back to profile page
-	
-	console.log(req.body);
 	//open data file
 	var friendArray;
 	var members;
@@ -85,14 +143,13 @@ app.post('/addFriend', function(req, res){
 			  throw err;
 		  }
 		  else{
-			
 			  members = JSON.parse(data);
 			  for(var i = 0; i < members.length; i++){
+				  console.log(members[1]);
 				  if(members[i].uid === req.body.profileID){
 					  friendArray = members[i].friends;
 					  friendArray.push(parseInt(req.body.members));
 					  members[i].friends = friendArray;
-					 
 					  break;
 				  }
 			  }
@@ -141,10 +198,10 @@ app.post('/removeFriend', function(req, res){
 					  }
 					  console.log(friendArray);
 					  members[i].friends = friendArray;
-					 
 					  break;
 				  }
 			  }
+			  
 			  members = JSON.stringify(members);
 			  fs.writeFile('data/members.json', members, function(error) {
 				     if (error) {
