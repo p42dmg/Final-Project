@@ -12,49 +12,51 @@ router.get('/', function(req, res, next) {
 	var locationArray = new Array();
 	var profile;
 	//open members.JSON file
-	fs.readFile('data/members.json', 'utf8', function (err, data) {
-		  if (err){
+
+  members = fs.readFileSync('data/members.json', 'utf8');
+  members = JSON.parse(members);
+ //get friend array based on id in URL
+  for(var i = 0; i < members.length; i++){
+		  if(members[i].uid == id){					  
+			  profile = members[i];
+					  friends = profile.friends;
+					  break;
+				  }
+}
+	
+	
+	
+	  fs.readFile('data/locations.json', 'utf8', function (err, data){
+		  if(err){
 			  throw err;
 		  }
 		  else{
-			
-			  members = JSON.parse(data);
-			  //get friend array based on id in URL
-			  for(var i = 0; i < members.length; i++){
-				  if(members[i].uid === id){
-					 // console.log("hi");
-					  profile = members[i];
-					 // console.log(profile);
-					  friends = profile.friends;
-					 //console.log(friends);
-					  break;
-				  }
-			  }
-			  //for each friend, get the last entry in their location array
+			  //for each friend, get their location array
+			  var locations = JSON.parse(data);
+			  console.log(friends);
 			  for(i = 0; i < friends.length; i++){
+				  //if their location isn't empty, get the location and add it to the array
+				  //to be sent to server
+				  console.log(friends[i]);
 				  var friendID = friends[i];
 				 // console.log(friendID);
-				  var friendData = members[friendID - 1];
-				  var friendLocations = friendData.locations;
-				 // console.log(friendLocations.length);
-				  var len = friendLocations.length;
-				  var lastIndex = len - 1;
-				  var last = friendLocations[lastIndex];
-				  last.name = friendData.name;
-				  locationArray.push(last);
+				  var friendLocation = locations[friendID - 1];
+				  if(friendLocation != 0 ){
+				  	console.log(friendLocation);				 
+				  	locationArray.push(friendLocation);				  	
+			  	}
+			  	
 			  }
-			  //console.log(locationArray);
+			 // console.log(locationArray);
 			  //render the map page, and pass the location array to it
 			  res.render('map', { 
 				  title: 'The Network - Map' ,
 				  locationArray: JSON.stringify(locationArray),
-				  members: members,
-				  id: id
+				  id: id,
+				  friends: friends
 			  });
 		  }
-		});
-	
-	  
+	  });
 });
 
 module.exports = router;

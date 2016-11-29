@@ -62,7 +62,7 @@ function displayError(error) {
 	 for(var i = 0; i < locations.length; i++){
 		 var tr = document.createElement("tr");
 		 var l = locations[i];
-		 tr.innerHTML = "<td>"+ l.name + "</td><td>" + l.location +"</td><td>" + l.date + "</td><td><button id=\"find-button\" onclick=\"loadLocations('"+ l.name +"')\">x</button></td>";	  
+		 tr.innerHTML = "<td>"+ l.name + "</td><td>" + l.location +"</td><td>" + l.date + "</td>";	  
 		 for(var j = 0; j < rowNum; j++){
 			 var rowName = table.rows[j].cells[0].innerText;
 			 if(l.name == rowName){

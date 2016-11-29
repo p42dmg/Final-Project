@@ -7,25 +7,47 @@
 		<% include head %>
 		
 		<link rel="stylesheet" type="text/css" href="/stylesheets/map.css">
-		<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-		
+		 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9E2WStlQ5uuIFsIzVjjzXyMGwm_yVih0"
+  type="text/javascript"></script>		
 		<script src="/js/markers.js"></script>
 		<script src="/js/map.js"></script>
-				<script>
+		<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+		<script>
+			
+		  	var socket = io();
+		  //	var socket = io.connect(http://localhost:3332);
+		  	var friends = [<%= friends %>];
+		  	var recentLocations = <%- locationArray %>;
+		  	console.log(recentLocations);
 			window.onload = initialize;
-			var map;
-			var Lat;
-			var Lon;
-			var recentLocations = <%- locationArray %>;
+			
 			
 			//Initalize map, location markers, and table
 			function initialize(){
 				getMyLocation();
 				initMap();
-				//getLocations();
+				getLocations(recentLocations);
+				var interval = (1000 * 60) * 2;
+				setInterval(function () {
+					console.log("getting locations");
+	 			 	socket.emit('getLocations', friends);
+				}, interval);
+				
+				socket.on('newLocations', function(locationArray){
+					
+					getLocations(locationArray);
+					console.log("new location added");
+				});
+				
+				
+			}
+			
+			function getLocations(recentLocations){
 				createMarkers(recentLocations);
 				drawTable(recentLocations);
 			}
+			
+			
 		</script>
 		<title><%=title %></title>
 	
@@ -63,49 +85,7 @@
 								
 							</div>
 						
-							<div id="addMarker">
-								<form id="add-location" method="post" action="/addLocation">
-									<input type="hidden" name="profileID" value="<%= id %>"> 
-									<div class="tableRow">
-										<p class="label"> Member: </p>
-										<p class="input"> 
-											<select name="members" id="selectMember">
-												<option value="" id="default"></option>
-												<% members.forEach(function(members) { 
-													
-													%>
-												<option value="<%= members.uid %>" id="<%= members.name %>"><%= members.name %></option>
-												<% 
-														
-												}); 
-											
-												%>
-											</select>
-										</p>
-									</div>
-									
-									<div class="tableRow">
-										<p class="label">Location: </p>
-										<p class="input"> 
-											<select name="location" id="loci">
-												<option value="" id="default"></option>
-												<option value="Downtown" id="Downtown">Downtown</option>
-												<option value="MUN Center" id="MUN Center">MUN Center</option>
-												<option value="Village Mall" id="Village Mall">Village Mall</option>
-												<option value="Avalon Mall" id="Avalon Mall">Avalon Mall</option>
-												<option value="Detect Location" id="Detect">Detect Location</option>
-											</select>
-										</p>
-									</div>
-									
-									<div class="tableRow">
-										<p></p>
-										<p> 
-											<input type="submit" id="addLocation" value="Add Location">
-										</p>
-									</div>
-								</form>
-							</div>
+							
 						
 							<div id="map-list">
 						          
@@ -114,10 +94,10 @@
                                     <tr><th>Name</th>
                                         <th>Location</th>
 										<th>Date Added</th>
-                                        <th>Find</th>
+                                     
                                     </tr> 
                                     <tr id="defaultmsg"  class="odd">
-                                        <td colspan="4">Nobody has added a location yet!</td>
+                                        <td colspan="3">Nobody has added a location yet!</td>
                                     </tr>
                                   
                                 
