@@ -12,26 +12,17 @@ router.get('/', function(req, res, next) {
 	var locationArray = new Array();
 	var profile;
 	//open members.JSON file
-	fs.readFile('data/members.json', 'utf8', function (err, data) {
-		  if (err){
-			  throw err;
-		  }
-		  else{
-			
-			  members = JSON.parse(data);
-			  //get friend array based on id in URL
-			  for(var i = 0; i < members.length; i++){
-				  if(members[i].uid === id){
-					 // console.log("hi");
-					  profile = members[i];
-					 // console.log(profile);
+
+  members = fs.readFileSync('data/members.json', 'utf8');
+  members = JSON.parse(members);
+ //get friend array based on id in URL
+  for(var i = 0; i < members.length; i++){
+		  if(members[i].uid == id){					  
+			  profile = members[i];
 					  friends = profile.friends;
-					 //console.log(friends);
 					  break;
 				  }
-			  }
-		  }
-		});
+}
 	
 	
 	
@@ -42,6 +33,7 @@ router.get('/', function(req, res, next) {
 		  else{
 			  //for each friend, get their location array
 			  var locations = JSON.parse(data);
+			  console.log(friends);
 			  for(i = 0; i < friends.length; i++){
 				  //if their location isn't empty, get the location and add it to the array
 				  //to be sent to server
@@ -49,8 +41,8 @@ router.get('/', function(req, res, next) {
 				  var friendID = friends[i];
 				 // console.log(friendID);
 				  var friendLocation = locations[friendID - 1];
-				  if(friendLocation != null){
-				  	//console.log(friendLocation);				 
+				  if(friendLocation != 0 ){
+				  	console.log(friendLocation);				 
 				  	locationArray.push(friendLocation);				  	
 			  	}
 			  	

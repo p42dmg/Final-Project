@@ -58,7 +58,7 @@ io.on('connection', function(socket){
 								     if (error) {
 								       console.error("write error:  " + error.message);
 								     } else {
-								       console.log("Successful");
+								       console.log("User locations sucessfully added!");
 								     }
 								});
 							
@@ -92,7 +92,6 @@ io.on('connection', function(socket){
 						 console.log(friendLocation);
 						 if(friendLocation != ""){
 						  	locationArray.push(friendLocation);
-						  	console.log(locationArray);
 						  	socket.emit('newLocations', locationArray);
 					  	}
 					  	
@@ -145,7 +144,6 @@ app.post('/addFriend', function(req, res){
 		  else{
 			  members = JSON.parse(data);
 			  for(var i = 0; i < members.length; i++){
-				  console.log(members[1]);
 				  if(members[i].uid === req.body.profileID){
 					  friendArray = members[i].friends;
 					  friendArray.push(parseInt(req.body.members));
@@ -158,7 +156,7 @@ app.post('/addFriend', function(req, res){
 				     if (error) {
 				       console.error("write error:  " + error.message);
 				     } else {
-				       console.log("Successful");
+				       console.log("Friend added");
 				     }
 				});
 			  
@@ -174,7 +172,6 @@ app.post('/removeFriend', function(req, res){
 	//and update friend added to json
 	//then rediect back to profile page
 	
-	console.log(req.body);
 	//open data file
 	var friendArray;
 	var friendID = parseInt(req.body.friendID);
@@ -190,13 +187,11 @@ app.post('/removeFriend', function(req, res){
 			  for(var i = 0; i < members.length; i++){
 				  if(members[i].uid === req.body.profileID){
 					  friendArray = members[i].friends;
-					  console.log(friendArray);
 					  for(var j = 0; j < friendArray.length; j++){
 						  if(friendArray[j] == friendID){
 							  friendArray.splice(j, 1); //remove 1 item at index j
 						  }
 					  }
-					  console.log(friendArray);
 					  members[i].friends = friendArray;
 					  break;
 				  }
@@ -207,7 +202,7 @@ app.post('/removeFriend', function(req, res){
 				     if (error) {
 				       console.error("write error:  " + error.message);
 				     } else {
-				       console.log("Successful");
+				       console.log("Friend Removed");
 				     }
 				});
 			  
