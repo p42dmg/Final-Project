@@ -51,11 +51,11 @@
 	},
 
 	{
-		"uid": "3",
-		"name": "Katie Little",
-		"icon": "icon04.png",
-		"iconLarge": "prof02.jpg",
-		"age": "30",
+		"uid": "03",
+		"name": "Michelle Mushaninga",
+		"icon": "icon11.png",
+		"iconLarge": "prof11.jpg",
+		"age": "20",
 		"location": 
 		{
 			"lat": 47.5714598,
@@ -64,14 +64,16 @@
 			"location": "47.5714598 -52.73239220000001"
 		},
 
-		"school": "CNA",
+		"school": "Memorial University",
 		"gender": "Female",
-		"birthday": "Dec. 22 1986",
-		"phoneNumber": "",
-		"bio": "this is a bio, write a few words about yourself! ",
+		"birthday": "Dec. 22 1996",
+		"phoneNumber": "(709)-xxx-xxxx",
+		"bio": "A computer science student who is crazy about the outdoors. Loves the beach, and is very outgoing!",
 		"friends": 
 		[
-			9
+			4,
+			2,
+			1
 		]
 	},
 
@@ -201,15 +203,16 @@
 
 	{
 		"uid": "9",
-		"name": "Test",
-		"icon": "icon02.png",
+		"name": "Test Profile 1",
+		"icon": "icon04.png",
 		"iconLarge": "prof02.jpg",
-		"age": "",
+		"age": "n/a",
 		"locations": null,
-		"school": "",
-		"gender": "",
-		"birthday": "",
-		"bio": "",
+		"school": "n/a",
+		"gender": "n/a",
+		"birthday": "n/a",
+		"phoneNumber": "(709)-xxx-xxxx",
+		"bio": "put some bio here, be creative!",
 		"friends": 
 		[
 			1,
@@ -223,16 +226,16 @@
 
 	{
 		"uid": "10",
-		"name": "Test",
+		"name": "Test Profile 2",
 		"icon": "icon02.png",
 		"iconLarge": "prof02.jpg",
-		"age": "",
+		"age": "n/a",
 		"locations": null,
-		"school": "",
-		"gender": "",
-		"birthday": "",
-		"phoneNumber": "",
-		"bio": "",
+		"school": "n/a",
+		"gender": "n/a",
+		"birthday": "n/a",
+		"phoneNumber": "(709)-xxx-xxxx",
+		"bio": "n/a",
 		"friends": 
 		[
 			4
