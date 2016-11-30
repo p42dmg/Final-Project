@@ -33,16 +33,13 @@ router.get('/', function(req, res, next) {
 		  else{
 			  //for each friend, get their location array
 			  var locations = JSON.parse(data);
-			  console.log(friends);
 			  for(i = 0; i < friends.length; i++){
 				  //if their location isn't empty, get the location and add it to the array
 				  //to be sent to server
-				  console.log(friends[i]);
 				  var friendID = friends[i];
 				 // console.log(friendID);
 				  var friendLocation = locations[friendID - 1];
-				  if(friendLocation != 0 ){
-				  	console.log(friendLocation);				 
+				  if(friendLocation != 0 ){				 
 				  	locationArray.push(friendLocation);				  	
 			  	}
 			  	
