@@ -1,7 +1,7 @@
 var express = require('express');
 var fs = require('fs');
 var router = express.Router();
-
+var members
 //GET profile page
 router.get('/', function(req, res, next) {
 	function findID(data, idToLookFor) {
@@ -26,9 +26,7 @@ router.get('/', function(req, res, next) {
 		  throw err;
 	  }
 	  else{
-		 // console.log(data);
-		  members = JSON.parse(data);
-		  
+		  members = callback(data);		  
 		  //find friend list for ID
 		  for(var i = 0; i < members.length; i++){
 			  if(members[i].uid === id){
@@ -55,6 +53,17 @@ router.get('/', function(req, res, next) {
 	});
 	
 });
+
+var callback = function(data){
+	 try{
+		   members = JSON.parse(data); 
+	  } catch(e) {
+		   console.log("Data not fully loaded, waiting for data. Error caught.");
+		   members = fs.readFileSync('data/members.json', 'utf8');
+		   members = JSON.parse(members);
+	  }
+	  return members;
+}
 
 module.exports = router;
 

@@ -180,8 +180,7 @@ app.post('/removeFriend', function(req, res){
 		  if (err){
 			  throw err;
 		  }
-		  else{
-			
+		  else{			
 			  members = JSON.parse(data);
 			  //go through file and find member
 			  for(var i = 0; i < members.length; i++){
