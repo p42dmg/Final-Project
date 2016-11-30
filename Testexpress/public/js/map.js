@@ -15,7 +15,6 @@ function initMap() {
 
 // Draws table on page load based on most recently added locations for each user
 function drawTable(locations) {
-	console.log("broken here 1");
 	var table = document.getElementById("map-table");
 	var defaultmsg = document.getElementById("defaultmsg");
 	// if default row is found and location array not empty, remove default row
@@ -23,9 +22,7 @@ function drawTable(locations) {
 		table.deleteRow("1");
 	}
 	var rowNum = table.rows.length;
-	console.log("nope here 2");
 	for (var i = 0; i < locations.length; i++) {
-		console.log("Well maybe here 3");
 		var tr = document.createElement("tr");
 		var l = locations[i];
 		tr.innerHTML = "<td>" + l.name + "</td><td>" + l.location + "</td><td>"
